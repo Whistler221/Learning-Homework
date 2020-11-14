@@ -4,7 +4,7 @@ create database salon_za_uljepsavanje;
 use salon_za_uljepsavanje;
 
 create table djelatnica(
-    oib         char(11) not null primary key,
+    sifra       int not null primary key auto_increment,
     osoba       int not null,
     usluga      int not null,
     iban        varchar(50)
@@ -38,9 +38,10 @@ create table posjeta(
 );
 
 alter table korisnik add foreign key (osoba) references osoba(sifra);
-alter table korisnik add foreign key (posjeta) references posjeta(sifra);
 
 alter table djelatnica add foreign key (osoba) references osoba(sifra);
-alter table djelatnica add foreign key (usluga) references posjeta(sifra);
+
+alter table posjeta add foreign key (djelatnica) references djelatnica(sifra);
+alter table posjeta add foreign key (korisnik) references korisnik(sifra);
 
 alter table usluga add foreign key (posjeta) references posjeta(sifra);
