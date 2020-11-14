@@ -6,7 +6,6 @@ use doktorska_ordinacija;
 create table medicinska_sestra(
     sifra       int not null primary key auto_increment,
     iban        varchar(50) not null,
-    skupina     int not null,
     osoba       int not null
 );
 
@@ -18,7 +17,6 @@ create table doktor(
 
 create table pacijent(
     sifra       int not null primary key auto_increment,
-    skupina     int not null,
     osoba       int not null
 );
 
@@ -29,29 +27,20 @@ create table osoba(
     oib         char(11)
 );
 
-create table skupina(
+create table odjel(
     sifra               int not null primary key auto_increment,
     medicinska_sestra   int not null,
     pacijent            int not null
 );
 
-create table terapija(
-    sifra               int not null primary key auto_increment,
-    medicinska_sestra   int not null,
-    doktor              int not null,
-    pacijent            int not null,
-    naziv               varchar(50) not null,
-    trajanje            datetime  
-);
 
 create table lijecenje(
 
     sifra               int not null primary key auto_increment,
     medicinska_sestra   int not null,
-    pacijent            int not null,
     doktor              int not null,
     terapija            int not null,
-    skupina             int not null,
+    odjel             int not null,
     trajanje            boolean
 );
 
@@ -61,10 +50,8 @@ alter table medicinska_sestra add foreign key (osoba) references osoba(sifra);
 alter table doktor add foreign key (osoba) references osoba (sifra);
 alter table pacijent add foreign key (osoba) references osoba (sifra);
 
-alter table skupina add foreign key (medicinska_sestra) references medicinska_sestra (sifra);
-alter table skupina add foreign key (pacijent) references pacijent (sifra);
+alter table odjel add foreign key (medicinska_sestra) references medicinska_sestra (sifra);
+alter table odjel add foreign key (pacijent) references pacijent (sifra);
 
-alter table terapija add foreign key (medicinska_sestra) references medicinska_sestra (sifra);
-alter table terapija add foreign key (doktor) references doktor (sifra);
-
-alter table lijecenje add foreign key (terapija) references terapija (sifra);
+alter table lijecenje add foreign key (doktor) references doktor (sifra);
+alter table lijecenje add foreign key (odjel) references odjel (sifra);
