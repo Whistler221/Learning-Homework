@@ -26,7 +26,8 @@ create table osoba(
 create table usluga(
     sifra   int not null primary key auto_increment,
     naziv   varchar(50) not null,
-    cijena  decimal(12,2)
+    cijena  decimal(12,2),
+    posjeta int not null
 );
 
 create table posjeta(
@@ -37,8 +38,9 @@ create table posjeta(
 );
 
 alter table korisnik add foreign key (osoba) references osoba(sifra);
-alter table korisnik add foreign key (usluga) references usluga(sifra);
 alter table korisnik add foreign key (posjeta) references posjeta(sifra);
 
 alter table djelatnica add foreign key (osoba) references osoba(sifra);
-alter table djelatnica add foreign key (usluga) references usluga(sifra);
+alter table djelatnica add foreign key (usluga) references posjeta(sifra);
+
+alter table usluga add foreign key (posjeta) references posjeta(sifra);
