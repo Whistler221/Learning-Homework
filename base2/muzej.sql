@@ -26,8 +26,11 @@ create table sponzor(
     naziv varchar(50) not null
 );
 
-alter table djelo add foreign key (izlozba) references izlozba(sifra);
+alter table djelo
+    add foreign key (izlozba) references izlozba(sifra);
 
-alter table kustos add foreign key (izlozba) references izlozba(sifra);
+alter table kustos
+    add foreign key (izlozba) references izlozba(sifra);
 
-alter table izlozba add foreign key (sponzor) references sponzor(sifra);
+alter table izlozba
+    add foreign key (sponzor) references sponzor(sifra);
