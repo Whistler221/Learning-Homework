@@ -1,7 +1,7 @@
 drop database if exists frizerski_salon;
 create database frizerski_salon;
 
-use salon_za_uljepsavanje;
+use frizerski_salon;
 
 create table djelatnica(
     sifra       int not null primary key auto_increment,
