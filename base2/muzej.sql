@@ -15,15 +15,15 @@ create table djelo(
 );
 
 create table kustos(
-    sifra int not null primary key auto_increment,
-    ime varchar(50) not null,
+    sifra   int not null primary key auto_increment,
+    ime     varchar(50) not null,
     prezime varchar(50)not null,
     izlozba int not null
 );
 
 create table sponzor(
-    sifra int not null primary key auto_increment,
-    naziv varchar(50) not null
+    sifra   int not null primary key auto_increment,
+    naziv   varchar(50) not null
 );
 
 alter table djelo add foreign key (izlozba) references izlozba(sifra);
