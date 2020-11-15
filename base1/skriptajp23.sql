@@ -19,7 +19,7 @@ create table grupa(
     smjer           int not null,
     predavac        int,
     datumpocetka    datetime,
-    brojpolaznika       int not null
+    brojpolaznika   int not null
 );
 
 create table osoba (
