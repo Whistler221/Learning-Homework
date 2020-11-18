@@ -2,7 +2,7 @@ drop database if exists vjezba3;
 create database vjezba3 character set utf8;
 use vjezba3;
 
-create table programski_jezik(
+create table programerski_jezik(
 	sifra 	int not null primary key auto_increment,
 	ime 	varchar(50) not null
 );
@@ -19,7 +19,7 @@ create table kategorija_programerski_jezik(
 
 alter table kategorija_programerski_jezik add foreign key (programerski_jezik) references programerski_jezik (sifra);
 
-alter table programerski_jezik add foreign key (kategorija) references kategorija (sifra);
+alter table kategorija_programerski_jezik add foreign key (kategorija) references kategorija (sifra);
 
 insert into programerski_jezik(ime) values 
 											("Java"), #1
@@ -27,7 +27,7 @@ insert into programerski_jezik(ime) values
 											("PHP"), #3
 											("Go"); #4
 	
-insert into category(ime) values
+insert into kategorija(ime) values
 									("oop"), #1
 									("osx"), #2
 									("linux"), #3
