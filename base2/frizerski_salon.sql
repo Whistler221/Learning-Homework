@@ -63,7 +63,7 @@ insert into usluga (naziv,cijena) values
 ('Prannje kose',20),
 ('Bojanje',69,99);
 
-insert into posjeta (korisnik,djlatnica,usluga) values
+insert into posjeta (korisnik,djelatnica,usluga) values
 (1,2,1),
 (3,1,1),
 (2,3,2),
