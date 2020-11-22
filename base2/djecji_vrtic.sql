@@ -12,16 +12,15 @@ create table dijete(
 
 create table odgajateljica(
     sifra           int not null primary key auto_increment,
-    struna_sprema   int not null,
+    strucna_sprema   int not null,
     oib             char(11),
     ime             varchar(50) not null,
     prezime         varchar(50) not null
 );
 
-create table struna_sprema(
+create table strucna_sprema(
     sifra int not null primary key auto_increment,
-    naziv varchar(50) not null,
-    razina varchar(50)
+    naziv varchar(50) not null
 );
 
 create table odgojna_skupina(
@@ -34,4 +33,20 @@ alter table odgojna_skupina add foreign key (odgajateljica) references odgajatel
 
 alter table dijete add foreign key (odgojna_skupina) references odgojna_skupina(sifra);
 
-alter table odgajateljica add foreign key (struna_sprema) references struna_sprema(sifra);
+alter table odgajateljica add foreign key (strucna_sprema) references strucna_sprema(sifra);
+
+insert into strucna_sprema (naziv)
+values ('SSS'),
+		('VSS');
+		
+insert into odgajateljica (strucna_sprema, oib, ime, prezime)
+values (1, '87642558419', 'Sandra', 'Misic'),
+		(2, '01751115946', 'Marija', 'Nisic');
+		
+insert into odgojna_skupina (odgajateljica, broj_dijece)
+values (1, 14),
+		(2, 16);
+		
+insert into dijete (ime, prezime, odgojna_skupina)
+values ('Dado', 'Radic', 1),
+		('Stjepan', 'Kovacic', 2);
