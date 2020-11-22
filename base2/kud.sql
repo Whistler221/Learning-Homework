@@ -25,3 +25,19 @@ create table nastup_clan(
 
 alter table nastup_clan add foreign key (nastup) references nastup(sifra);
 alter table nastup_clan add foreign key (clan) references clan(sifra);
+
+insert into clan (ime, prezime, email)
+values ('ime1', 'prezime1', 'email@1'),
+		('ime2', 'ime2', 'email@2'),
+		('ime3', 'prezime3', 'email@3');
+		
+insert into nastup (zarada, mjesto)
+values (5999.99, 'grad1'),
+		(12000, 'grad2'),
+		(8999.99, 'grad3');
+		
+insert into nastup_clan (nastup, clan)
+values (1, 3),
+		(2, 1),
+		(3, 2),
+		(1, 2);
