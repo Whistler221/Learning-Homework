@@ -37,6 +37,5 @@ select from mjesto;
 select naziv as 'Grad:', postanskibroj as 'Poštanski broj:', zupanija as 'Županija' 
 from mjesto where naziv='Osijek';
 
-
 select naziv as 'Grad:', 'naziv' as naziv, postanskibroj as 'Poštanski broj:', 
 zupanija as 'Županija:' from mjesto;
