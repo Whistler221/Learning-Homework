@@ -66,7 +66,7 @@ create table svekar(
     bojakose    varchar(36),
     prstena     int,
     narukvica   int not null,
-    cura        int not null,
+    cura        int not null
 );
 
 create table cura(
@@ -93,18 +93,71 @@ alter table prijatelj_brat add foreign key (brat) references brat (sifra);
 
 # 1. U tablice snasa, ostavljena i prijatelj_brat unesite po 3 retka.
 
+insert into prijatelj (sifra, indiferentno)
+values (1, 1),
+		(2, 0),
+		(3, 1);
+	
+insert into brat (sifra, ogrlica, ekstroventno)	
+values (1, 4, 1),
+		(2, 6, 0),
+		(3, 8, 1);
+	
+insert into prijatelj_brat (prijatelj, brat)	
+values (1, 2),
+		(2, 3),
+		(3, 1);
+	
+insert into ostavljena (sifra, modelnaocala)
+values (1, 'modelnaocala1'),
+		(2, 'modelnaocala2'),
+		(3, 'modelnaocala3');	
+
+# 5 min 
+	
 
 # 2. U tablici svekar postavite svim zapisima kolonu suknja 
 #    na vrijednost Osijek.
+
+insert into cura (sifra, ogrlica)
+values (1, 4),
+		(2, 6),
+		(3, 9);
+	
+insert into svekar (sifra, novcica, suknja, narukvica, cura)
+values (1, 12.4, 'suknja1', 6, 1),
+		(2, 10.6, 'suknja2', 12, 2),
+		(3, 17.8, 'suknja3', 18, 3);
+		
+update svekar set suknja ='Osijek';
+
+select * from svekar;
+
 
 
 # 3. U tablici punica obrišite sve zapise čija je vrijednost 
 #    kolone kratkamajica jednako AB.
 
+insert into snasa (sifra, kuna, eura, ostavljena)
+values (1, 242.82, 122.44, 1),
+		(2, 327.82, 145.24, 2),
+		(3, 142.21, 189.57, 3);
+	
+insert into punica (sifra, kuna, vesta, snasa)
+values (1, 326.99, 'vesta1', 1),
+		(2, 256.88, 'vesta2', 2),
+		(3, 128.44, 'vesta3', 3);
+	
+delete from punica where kratkamajica='AB';	
 
+# 8 min
+	
 #4. Izlistajte majica iz tablice ostavljena uz uvjet da 
 #   vrijednost kolone lipa nije 9,10,20,30 ili 35.
 
+select majica from ostavljena where lipa % 0.09 != 0 and lipa % 0.1 != 0 and lipa % 0.2 !=0 and lipa % 0.3 != 0 and lipa % 0.35 != 0;
+
+# 15 min
 
 #5. Prikažite ekstroventno iz tablice brat, vesta iz tablice 
 #   punica te kuna iz tablice snasa uz uvjet da su vrijednosti
@@ -112,6 +165,21 @@ alter table prijatelj_brat add foreign key (brat) references brat (sifra);
 #   vrijednosti kolone haljina iz tablice prijatelj sadrže niz
 #   znakova ba. Podatke posložite po kuna iz tablice snasa silazno.
 
+select a.ekstroventno, e.snasa, g.vesta
+from brat a
+inner join prijatelj_brat b on a.sifra = b.brat
+inner join prijatelj c on b.prijatelj = c.sifra
+inner join ostavljena d on c.sifra = d.prijatelj
+inner join snasa e on d.sifra = e.ostavljena 
+inner join punica g on e.sifra = g.snasa 
+where d.lipa is <>91 and c.haljina like '%ba%';
 
 #6. Prikažite kolone haljina i lipa iz tablice prijatelj čiji se
 #   primarni ključ ne nalaze u tablici prijatelj_brat.
+
+select * from d.prijatelj
+where d.sifra not in (select prijatelj from prijatelj_brat);
+
+# 15 min
+
+# 58 min total
