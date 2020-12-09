@@ -14,8 +14,8 @@ create table gameField(
 
 
  -- make the snake entity --
-create table SNAKE(
-	snakeID			int not null primary key auto_increment,
+create table Game(
+	gameID			int not null primary key auto_increment,
 	playerID		int not null,
 
 	x_coord			int not null,
@@ -45,7 +45,7 @@ create table scoreBoard(
 
 alter table SNAKE add foreign key (playerID) references player(playerID);
 
-alter table gameField add foreign key (snakeID) references SNAKE(snakeID);
+alter table gameField add foreign key (gameID) references SNAKE(snakeID);
 
 alter table scoreBoard add foreign key (playerID) references player(playerID);
 
