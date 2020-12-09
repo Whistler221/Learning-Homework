@@ -20,7 +20,7 @@ create table neprijatelj(
     sifra        int not null primary key auto_increment,
     majica       varchar(32),
     haljina      varchar(43) not null,
-    lipa         decimal(16.8),
+    lipa         decimal(16,8),
     modelnaocala varchar(49) not null,
     kuna         decimal(12.6)not null,
     jmbg         char(11),
@@ -56,8 +56,8 @@ create table zarucnica(
     sifra        int not null primary key auto_increment,
     narukvica    int,
     bojakose     varchar(37) not null,
-    novcica      decimal(15.9),
-    lipa         decimal(15.8) not null,
+    novcica      decimal(15,9),
+    lipa         decimal(15,8) not null,
     indiferentno bit not null
 );
 

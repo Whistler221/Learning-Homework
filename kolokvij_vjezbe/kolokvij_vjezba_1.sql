@@ -8,7 +8,7 @@ create table sestra(
     sifra 		int not null primary key auto_increment,
     introvertno bit,
     haljina		varchar(31) not null,
-    maraka		decimal(16.6),
+    maraka		decimal(16,6),
     hlace		varchar(46) not null,
     narukvica	int not null
 );
@@ -31,7 +31,7 @@ create table muskarac(
     bojaociju    varchar(50) not null,
     hlace        varchar(30),
     modelnaocala varchar(43),
-    maraka       decimal(14.5) not null,
+    maraka       decimal(14,5) not null,
     zena         int not null
 );
 
