@@ -15,12 +15,12 @@ create table users(
 );
 
 insert into users (name, dob)
-values ('Filip', '1995-07-05');
+values ('Filip', '1995-05-07');
 
 select
 timestampdiff( year, dob, now() ) as 'Year',
 timestampdiff( month, dob, now() ) % 12 as 'Months',
-timestampdiff( day, dob, now() ) % 30.4375 as 'Days'
+timestampdiff( day, dob, now() ) % (((3*365) + 366)/12) as 'Days'
 from users;
 
 select * from users;

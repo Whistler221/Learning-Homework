@@ -30,26 +30,27 @@ create table paycheck(
 
 create table project(
     projectID           int not null primary key auto_increment,
-    project_name        varchar(60) not null,
-    project_description varchar(600) not null,
+    project_name        varchar(100) not null,
+    project_description text not null,
     startdate           datetime not null,
     enddate             datetime not null,
-    project_location    varchar(70) not null,
+    project_location    varchar(100) not null,
     price               decimal(16,2) not null
 );
 
 create table employee_project(
-    projectID   int not null,
-    employeeID  int not null,
-    fromdate    datetime not null,
-    todate      datetime not null
+    projectID   		int not null,
+    employeeID  		int not null,
+    project_description text not null,
+    fromdate    		datetime not null,
+    todate      		datetime not null
 );
 
 create table company(
     companyID               int not null primary key auto_increment,
     company_name            varchar(120) not null,
     date_of_establishment   datetime not null,
-    company_description     varchar(500) not null,
+    company_description     text not null,
     adress                  varchar(100) not null
 );
 
@@ -62,9 +63,12 @@ create table employee_company(
 );
 
 create table company_project(
-    companyID int not null,
-    projectID int not null
-
+    companyID 			int not null,
+    projectID 			int not null,
+    fromdate  			datetime not null,
+	todate	  			datetime not null,
+	project_description text not null
+    
 );
 
 alter table employee_paycheck add foreign key (employeeID) references employee_info (employeeID);
@@ -94,11 +98,11 @@ values (1, 5500.00, 'euro', 'NL73ABNA6266038226'),
 		(5, 9500.00, 'BAM', 'NL02RABO2899665057');
 		
 insert into employee_paycheck (employeeID, paycheck)
-values (1,5),
-		(2,4),
-		(3,3),
-		(4,2),
-		(5,1);
+values (1, 5),
+		(2, 4),
+		(3, 3),
+		(4, 2),
+		(5, 1);
 		
 insert into project (projectID, project_name, project_description, startdate, enddate, project_location, price)
 values (1, 'name1', 'description1', '1988-02-12', '1990-04-12', 'location1', 120000.00),
@@ -107,12 +111,12 @@ values (1, 'name1', 'description1', '1988-02-12', '1990-04-12', 'location1', 120
 		(4, 'name4', 'description4', '1992-08-18', '1994-10-18', 'location4', 160000.00),
 		(5, 'name5', 'description5', '1990-10-22', '1992-12-20', 'location5', 180000.00);
 		
-insert into employee_project (projectID, employeeID, fromdate, todate)
-values (1, 1, '2010-02-08', '2012-04-16'),
-		(2, 2, '2012-04-16', '2014-06-18'),
-		(3, 3, '2014-06-18', '2016-08-20'),
-		(4, 4, '2016-08-20', '2018-10-22'),
-		(5, 5, '2018-10-12', '2020-12-10');
+insert into employee_project (projectID, employeeID, project_description,fromdate, todate)
+values (1, 1, 'description1', '2010-02-08', '2012-04-16'),
+		(2, 2, 'description2', '2012-04-16', '2014-06-18'),
+		(3, 3, 'description3', '2014-06-18', '2016-08-20'),
+		(4, 4,'description4', '2016-08-20', '2018-10-22'),
+		(5, 5, 'description5', '2018-10-12', '2020-12-10');
 		
 insert into company (companyID, company_name, date_of_establishment, company_description, adress)
 values (1, 'name1', '1960-05-07', 'description1', 'adress1'),
@@ -122,18 +126,18 @@ values (1, 'name1', '1960-05-07', 'description1', 'adress1'),
 		(5, 'name5', '1969-03-015', 'description5', 'adress5');
 		
 insert into employee_company (employeeID, companyID, fromdate, todate)
-values (1, 1, '1982-04-02','2020-08-06'),
-		(1, 1, '1982-05-04','2020-10-08'),
-		(1, 1, '1982-02-05','2020-02-10'),
-		(1, 1, '1982-06-06','2020-04-12'),
-		(1, 1, '1982-08-07','2020-06-14');
+values (1, 5, '1982-04-02','2020-08-06'),
+		(2, 4, '1982-05-04','2020-10-08'),
+		(3, 3, '1982-02-05','2020-02-10'),
+		(4, 2, '1982-06-06','2020-04-12'),
+		(5, 1, '1982-08-07','2020-06-14');
 		
-insert into company_project (companyID, projectID)
-values (1,5),
-		(2,4),
-		(3,3),
-		(4,2),
-		(5,1);
+insert into company_project (companyID, projectID, fromdate, todate, project_description)
+values (1, 5, '1962-04-06', '1963-08-16', 'description1' ),
+		(2, 4, '1964-06-18', '1968-10-12', 'description2' ),
+		(3, 3, '1966-012-01', '1969-11-08', 'description3'),
+		(4, 2, '1968-02-20', '1971-02-15', 'description4'),
+		(5, 1, '1970-09-14', '1973-04-20', 'description5');
 
 select * from employee_info; 
 
