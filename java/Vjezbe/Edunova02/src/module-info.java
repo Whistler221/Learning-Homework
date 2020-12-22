@@ -1,4 +1,3 @@
-module edunova01 {
+module edunova02 {
 	requires java.desktop;
-	
 }
