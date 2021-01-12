@@ -20,6 +20,7 @@ public class Zadatak4 {
 	int res[][] = new int[row][col];
 	 
 	System.out.println("Enter the elements of matrix1");
+	
 	i=0;
 	while ( i < row)
 	{ 
@@ -32,6 +33,7 @@ public class Zadatak4 {
 	i++;
 	 
 	}
+	
 	System.out.println("Enter the elements of matrix2");
 	 
 	i=0;
