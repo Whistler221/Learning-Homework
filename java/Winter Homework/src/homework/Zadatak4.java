@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 public class Zadatak4 {
 
-	public static void main(String args[])
-	{
+	public static void main(String args[]) {
+	
 	int row, col,i,j;
 	Scanner in = new Scanner(System.in);
 	 
