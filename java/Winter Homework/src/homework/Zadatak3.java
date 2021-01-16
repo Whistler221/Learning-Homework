@@ -8,7 +8,9 @@ public class Zadatak3 {
 	
 		Scanner sc = new Scanner(System.in);
 		
-		int a, b, i, j, flag;
+		int a, b, i, j;
+		
+		boolean isPrime = true;
 		
 		System.out.printf("Enter number a: ");
 		a = sc.nextInt();
@@ -17,23 +19,30 @@ public class Zadatak3 {
 		b = sc.nextInt();
 		
 		
-		System.out.printf("\nPrime numbers between %d and %d are: ", a, b);
+		System.out.printf("\nPrime numbers between %d and %d are: ", a, b );
+		System.out.println("\n");
+		
+		if (a > b) {
+			i = a;
+			a = b;
+			b = i;
+		}
 		
 		for (i = a; i <= b; i++) {			
 			
 			if (i == 1 || i == 0)
                 continue;
 			
-			flag = 1;
+			isPrime = true;
 			
 			for (j = 2; j <= i / 2; ++j) {				
 				if (i % j == 0) {
-					flag = 0;
+					isPrime = false;
 					break;
 				}
 			}
 			
-			if (flag == 1)
+			if (isPrime == true)
 				System.out.println(i);
 		}				
 	}	
