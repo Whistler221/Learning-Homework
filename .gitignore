@@ -1,3 +1,7 @@
 tomislav.*
 *.log
 base3/
+.settings
+bin
+.classpath
+.project
