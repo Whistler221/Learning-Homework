@@ -22,5 +22,8 @@ public class PaneExercise{
 		// JOptionPane.showMessageDialog(null, full_name);
 		// System.exit(0);
 		
+		Method.testMethod();
+		Method.testMethod2();
+		
 	}
 }

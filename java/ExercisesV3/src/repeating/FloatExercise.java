@@ -18,5 +18,7 @@ public class FloatExercise {
 		System.out.println(number);
 		
 		
+		
+		
 	}
 }
