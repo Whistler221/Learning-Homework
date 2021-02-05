@@ -3,11 +3,10 @@ package crud;
 public class Company {
 	
 	private String name;
-	private String HQ_location;	
+	private String HQ_location;
 	private String OfficeLocation;
-	private String governmentRegisteredID;
+	private int governmentRegisteredID;
 	private String founderContactInfo;
-	
 	
 	public String getName() {
 		return name;
@@ -33,11 +32,11 @@ public class Company {
 		OfficeLocation = officeLocation;
 	}
 	
-	public String getGovernmentRegisteredID() {
+	public int getGovernmentRegisteredID() {
 		return governmentRegisteredID;
 	}
 	
-	public void setGovernmentRegisteredID(String governmentRegisteredID) {
+	public void setGovernmentRegisteredID(int governmentRegisteredID) {
 		this.governmentRegisteredID = governmentRegisteredID;
 	}
 	
@@ -48,22 +47,5 @@ public class Company {
 	public void setFounderContactInfo(String founderContactInfo) {
 		this.founderContactInfo = founderContactInfo;
 	}
-	
-	
-
-
-	
-	
-
-	
-	
-	
-	
-	
-
-
-
-	
-	
-	
+		
 }
