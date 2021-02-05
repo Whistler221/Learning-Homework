@@ -47,5 +47,7 @@ public class Company {
 	public void setFounderContactInfo(String founderContactInfo) {
 		this.founderContactInfo = founderContactInfo;
 	}
+
+
 		
 }
