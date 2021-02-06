@@ -1,7 +1,13 @@
 package crud;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonIOException;
 
 public class Start {
 
@@ -52,7 +58,11 @@ public class Start {
 			break;
 		
 		case 2:
-			inputNewCompanyName();
+			inputNewCompany();
+			break;
+			
+		case 3:
+			changeCompany();
 			break;
 						
 		case 5:
@@ -69,7 +79,7 @@ public class Start {
 		companyMenu();
     }
 		
-	private void inputNewCompanyName() {
+	private void inputNewCompany() {
 		
 		Company c = new Company();
         c.setName(Auxiliary.inputString("Input Company name: "));
@@ -78,13 +88,39 @@ public class Start {
         c.setGovernmentRegisteredID(Auxiliary.inputNumber("Input G.R.ID: "));
         c.setFounderContactInfo(Auxiliary.inputString("Input Founders contact info: "));
         companies.add(c);
+        save();
         companyMenu();
 	}
+	
+	private void changeCompany() {
+		allCompanies();
+		int choice = Auxiliary.inputNumber("Chose option", 1, companies.size())-1;		
+		var c=companies.get(choice);
 		
+		c.setName(Auxiliary.inputString("Name (" + c.getName() + ")"));
+		c.setHQ_location(Auxiliary.inputString("HQ location (" + c.getHQ_location() + ")"));
+		c.setOfficeLocation(Auxiliary.inputString("Offic location (" + c.getOfficeLocation() + ")"));
+		c.setGovernmentRegisteredID(Auxiliary.inputNumber("G.R.ID (" + c.getGovernmentRegisteredID() + ")"));
+		c.setFounderContactInfo(Auxiliary.inputString("Founders info (" + c.getFounderContactInfo() + ")"));
+		companies.set(choice, c);
+		save();
+		optionsCompanyMenu();
+			
+	}
+		
+	private void allCompanies() {
+		System.out.println("---------------------");
+		for (int i=0; i<companies.size(); i++) {
+			var c = companies.get(i);
+			System.out.println((i+1) + " . " + c.getName());
+		}
+		System.out.println("---------------------");
+	}
+
 	private void optionsCompanyMenu() {
 				System.out.println("1. List all of the Companies");
 				System.out.println("2. Input new Company");
-				System.out.println("Work in progres");
+				System.out.println("Change Company");
 				System.out.println("Work in progres");
 				System.out.println("Exit to main menu");
 	}
@@ -127,6 +163,7 @@ public class Start {
 		p.setLocation(Auxiliary.inputString("Input Project location"));
 		p.setCost(Auxiliary.inputNumber("Input Project cost"));
 		projects.add(p);
+		save();
 		projectMenu();
 		
 	}
@@ -179,6 +216,7 @@ public class Start {
 		e.setIban(Auxiliary.inputString("Input Employee Iban"));
 		e.setSalary(Auxiliary.inputNumber("Input Employee salary"));
 		employeeInformations.add(e);
+		save();
 		employeeInfoMenu();
 	}
 
@@ -196,7 +234,31 @@ public class Start {
 		
 	}
 	
+	private void save() {		
+		Gson gson = new Gson();	
+		//System.out.println(gson.toJson(companies));
+		//System.out.println(gson.toJson(projects));
+		//System.out.println(gson.toJson(employeeInformations));
+		
+		
+		try {
+			FileWriter fw = new FileWriter(new File("data.json"));
+			fw.write(gson.toJson(companies));
+			fw.close();
+			
+		} catch (JsonIOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
 	public static void main(String[] args) {
+		
+		new Start();
 		
 	}
 }
