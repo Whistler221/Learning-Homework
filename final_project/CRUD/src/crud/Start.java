@@ -1,33 +1,39 @@
 package crud;
 
-import java.io.File;
+import java.io.File; 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Type;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
+import com.google.gson.reflect.TypeToken;
 
 public class Start {
 
+	private List<Company> companies;
+	private static final String PATH_COMPANIES="companies.Json";
+	private List<Project> projects;
+	private List<employeeInformation> employeeInformations; 
+	
 	public Start() {
 		
 		companies = new ArrayList<>();
+		loadCompanies();
 		projects = new ArrayList<>();
 		employeeInformations = new ArrayList<>();	
 		Menu();
 	}
 
-	private List<Company> companies;
-	private List<Project> projects;
-	private List<employeeInformation> employeeInformations; 
-
 	private void Menu() {
 
-		System.out.println("------------Company------------");
+		System.out.println("------------Company Crud------------");
 		auxiliaryMenu();
-		switch (Auxiliary.inputNumber("Select an action", 1, 4)) {
+		switch (Auxiliary.inputNumber("Select an action", 1, 5)) {
 		
 		case 1:		
 		companyMenu();
@@ -40,17 +46,26 @@ public class Start {
 		case 3:
 		employeeInfoMenu();
 		
-		case 4:
+		case 5:
 		System.out.println("Exit");
 		break;
 				
 		}		
 	}
 	
+	private void auxiliaryMenu() {
+		
+		System.out.println("1. Company Menu");
+		System.out.println("2. Project Menu");
+		System.out.println("3. Employe info Menu");
+		System.out.println("4. Exit");
+		
+	}
+	
 	private void companyMenu() {
 		
 		System.out.println("-----------Company Menu-----------");
-		optionsCompanyMenu();
+		CompanyMenu();
 		switch (Auxiliary.inputNumber("Chose path", 1, 5)) {
 		
 		case 1:
@@ -70,12 +85,41 @@ public class Start {
 				
 		}	
 	}
+	
+	private void save() {		
+		Gson gson = new Gson();			
+		try {
+			FileWriter fw = new FileWriter(new File(PATH_COMPANIES));
+			fw.write(gson.toJson(companies));
+			fw.close();
+			
+		} catch (JsonIOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	private void loadCompanies() {
+		
+		if (!new File(PATH_COMPANIES).exists()) {
+			return;
+		}
+		try {
+			Type listType = new TypeToken<List<Company>>(){}.getType();
+			String json=Files.readString(Path.of(PATH_COMPANIES));
+			companies = new Gson().fromJson(json, listType);
+		}catch(Exception e) {
+			e.printStackTrace(); 
+		}
+	}
+
 
 	private void listCompany() {
-		for(Company company : companies) {
-			System.out.printf("Name: %s", company.getName());
-			System.out.println("");
-		}
+		allCompanies();
 		companyMenu();
     }
 		
@@ -104,7 +148,7 @@ public class Start {
 		c.setFounderContactInfo(Auxiliary.inputString("Founders info (" + c.getFounderContactInfo() + ")"));
 		companies.set(choice, c);
 		save();
-		optionsCompanyMenu();
+		CompanyMenu();
 			
 	}
 		
@@ -112,17 +156,21 @@ public class Start {
 		System.out.println("---------------------");
 		for (int i=0; i<companies.size(); i++) {
 			var c = companies.get(i);
-			System.out.println((i+1) + " . " + c.getName());
+			System.out.println((i+1) + " Company Name: " + c.getName());
+			//System.out.println((i+2) + " HQ location: " + c.getHQ_location());
+			//System.out.println((i+3) + " Office location: " + c.getOfficeLocation());
+			//System.out.println((i+4) + " G.R.ID: " + c.getGovernmentRegisteredID());
+			//System.out.println((i+5) + " Founders contact: " + c.getFounderContactInfo());
 		}
 		System.out.println("---------------------");
 	}
 
-	private void optionsCompanyMenu() {
+	private void CompanyMenu() {
 				System.out.println("1. List all of the Companies");
 				System.out.println("2. Input new Company");
-				System.out.println("Change Company");
-				System.out.println("Work in progres");
-				System.out.println("Exit to main menu");
+				System.out.println("3. Change Company");
+				System.out.println("4. Work in progres");
+				System.out.println("5. Exit to main menu");
 	}
 	
 
@@ -140,23 +188,28 @@ public class Start {
 			inputNewProject();
 			break;
 			
+		case 3:
+			changeProject();
+			break;
+			
 		case 5:
 			Menu();
 			
-		}
-		
+		}		
 		
 	}		
 
 	private void listProjects() {
-		
-		for (Project project : projects) {
-			System.out.printf("Name %s", project.getName());
-			System.out.println("");
-		}
+		allProjects();
 		projectMenu();
-	}
+    }
 	
+	//private void loadProjects() {
+	//	
+	//	if (!new File(PATH_PROJECTS).exists()) {
+	//		return;
+	//	}
+
 	private void inputNewProject() {
 		Project p = new Project();
 		p.setName(Auxiliary.inputString("Input Project name: "));
@@ -167,13 +220,37 @@ public class Start {
 		projectMenu();
 		
 	}
+	
+	private void changeProject() {
+		allProjects();
+		int choice = Auxiliary.inputNumber("Chose option", 1, projects.size())-1;
+		var p=projects.get(choice);
+		
+		p.setName(Auxiliary.inputString("Name (" + p.getName() + ")"));
+		p.setLocation(Auxiliary.inputString("Location (" + p.getLocation() + ")"));
+		p.setCost(Auxiliary.inputNumber("Cost (" + p.getCost() + ")"));
+		projects.set(choice, p);
+		save();
+		projectMenu();		
+	}
+
+	private void allProjects() {
+		System.out.println("---------------------");
+		for (int i=0; i<projects.size(); i++) {
+			var p = projects.get(i);
+			System.out.println((i + 1) + " Project name: " + p.getName());
+			//System.out.println((i + 1) + " Project location: " + p.getLocation());
+			//System.out.println((i + 1) + " Project cost: " + p.getCost());
+		}
+		System.out.println("---------------------");		
+	}
 
 	private void optionsProjectMenu() {		
 				System.out.println("1. List all of the Projects");
 				System.out.println("2. Input new Project");
-				System.out.println("Work in progres");
-				System.out.println("Work in progres");
-				System.out.println("Exit to main menu");
+				System.out.println("3. Change Project");
+				System.out.println("4. Work in progres");
+				System.out.println("5. Exit to main menu");
 		
 	}
 
@@ -188,6 +265,10 @@ public class Start {
 			
 		case 2:
 			inputNewEmployeeInfo();
+			break;
+			
+		case 3:
+			changeEmployeeInfo();
 			break;
 			
 		case 5:
@@ -219,46 +300,46 @@ public class Start {
 		save();
 		employeeInfoMenu();
 	}
+	
+	private void changeEmployeeInfo() {
+		allEmployees();
+		int choice = Auxiliary.inputNumber("Chose option", 1, employeeInformations.size())-1;
+		var e=employeeInformations.get(choice);
+		
+		e.setName(Auxiliary.inputString("Name (" + e.getName() + ")"));
+		e.setLastname(Auxiliary.inputString("Last name (" + e.getLastname() + ")"));
+		e.setContactInfo(Auxiliary.inputString("Contact info (" + e.getContactInfo() + ")"));
+		e.setIban(Auxiliary.inputString("Iban (" + e.getIban() + ")"));
+		e.setSalary(Auxiliary.inputNumber("Salary (" + e.getSalary() + ")"));
+		employeeInformations.set(choice, e);
+		save();
+		employeeInfoMenu();
+	}
+	
+	private void allEmployees() {
+		System.out.println("---------------------");
+		for (int i=0; i<employeeInformations.size(); i++) {
+			var e = employeeInformations.get(i);
+			System.out.println((i+1) + " . " + e.getName());
+			System.out.println((i+1) + " . " + e.getLastname());
+			System.out.println((i+1) + " . " + e.getContactInfo());
+			System.out.println((i+1) + " . " + e.getIban());
+			System.out.println((i+1) + " . " + e.getSalary());
+		}
+		System.out.println("---------------------");
+	}
 
 	private void employeeInfoOptions() {
 				System.out.println("1. List all of the Employee info");
 				System.out.println("2. Input new Employee info");
-				System.out.println("Work in progres");
-				System.out.println("Work in progres");
-				System.out.println("Exit to main menu");
+				System.out.println("3. Chane Employee info");
+				System.out.println("4. Work in progres");
+				System.out.println("5. Exit to main menu");
 		
-	}
-
-	private void auxiliaryMenu() {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	private void save() {		
-		Gson gson = new Gson();	
-		//System.out.println(gson.toJson(companies));
-		//System.out.println(gson.toJson(projects));
-		//System.out.println(gson.toJson(employeeInformations));
-		
-		
-		try {
-			FileWriter fw = new FileWriter(new File("data.json"));
-			fw.write(gson.toJson(companies));
-			fw.close();
-			
-		} catch (JsonIOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}
+	}	
 	
 	public static void main(String[] args) {
 		
-		new Start();
-		
+		new Start();		
 	}
 }
