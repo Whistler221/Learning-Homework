@@ -25,12 +25,11 @@ public class Auxiliary {
 		
 		int i;
 		while(true) {
-			System.out.println(message + ": ");
+			System.out.print(message + ": ");
 			try {
 				i = Integer.parseInt(sc.nextLine());
 				if(i < min || i > max) {
-					System.out.println("Number of input not in available range,"
-							+ "available input range is from" + min + ", to" + max + ".");
+					System.out.println("Number of input not in available range (" + min + "-" + max + ")");
 					continue;
 				}
 				return i;
@@ -40,7 +39,7 @@ public class Auxiliary {
 		}		
 	}
 	
-	public static String inputString(String message) {
+	public static String entryCheck(String message) {
 		String s;
 		while(true) {
 			System.out.println(message + ": ");

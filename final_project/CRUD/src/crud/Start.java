@@ -1,31 +1,23 @@
 package crud;
 
-import java.io.File; 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.lang.reflect.Type;
-import java.nio.file.Files;
-import java.nio.file.Path;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import com.google.gson.Gson;
-import com.google.gson.JsonIOException;
-import com.google.gson.reflect.TypeToken;
 
 public class Start {
 
 	private List<Company> companies;
-	private static final String PATH_COMPANIES="companies.Json";
 	private List<Project> projects;
-	private List<employeeInformation> employeeInformations; 
+	private List<employeeInformation> employeeInformations;
 	
 	public Start() {
 		
 		companies = new ArrayList<>();
-		loadCompanies();
+		JsonHandler.loadCompanies(companies);
 		projects = new ArrayList<>();
-		employeeInformations = new ArrayList<>();	
+		JsonHandler.loadProjects(projects);
+		employeeInformations = new ArrayList<>();
+		JsonHandler.loadEmployeeInfo(employeeInformations);
 		Menu();
 	}
 
@@ -85,38 +77,6 @@ public class Start {
 				
 		}	
 	}
-	
-	private void save() {		
-		Gson gson = new Gson();			
-		try {
-			FileWriter fw = new FileWriter(new File(PATH_COMPANIES));
-			fw.write(gson.toJson(companies));
-			fw.close();
-			
-		} catch (JsonIOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}
-	
-	private void loadCompanies() {
-		
-		if (!new File(PATH_COMPANIES).exists()) {
-			return;
-		}
-		try {
-			Type listType = new TypeToken<List<Company>>(){}.getType();
-			String json=Files.readString(Path.of(PATH_COMPANIES));
-			companies = new Gson().fromJson(json, listType);
-		}catch(Exception e) {
-			e.printStackTrace(); 
-		}
-	}
-
 
 	private void listCompany() {
 		allCompanies();
@@ -126,13 +86,13 @@ public class Start {
 	private void inputNewCompany() {
 		
 		Company c = new Company();
-        c.setName(Auxiliary.inputString("Input Company name: "));
-        c.setHQ_location(Auxiliary.inputString("Input HQ Location: "));
-        c.setOfficeLocation(Auxiliary.inputString("Input Office location: "));
+        c.setName(Auxiliary.entryCheck("Input Company name: "));
+        c.setHQ_location(Auxiliary.entryCheck("Input HQ Location: "));
+        c.setOfficeLocation(Auxiliary.entryCheck("Input Office location: "));
         c.setGovernmentRegisteredID(Auxiliary.inputNumber("Input G.R.ID: "));
-        c.setFounderContactInfo(Auxiliary.inputString("Input Founders contact info: "));
+        c.setFounderContactInfo(Auxiliary.entryCheck("Input Founders contact info: "));
         companies.add(c);
-        save();
+        JsonHandler.saveCompanies(companies);
         companyMenu();
 	}
 	
@@ -141,13 +101,13 @@ public class Start {
 		int choice = Auxiliary.inputNumber("Chose option", 1, companies.size())-1;		
 		var c=companies.get(choice);
 		
-		c.setName(Auxiliary.inputString("Name (" + c.getName() + ")"));
-		c.setHQ_location(Auxiliary.inputString("HQ location (" + c.getHQ_location() + ")"));
-		c.setOfficeLocation(Auxiliary.inputString("Offic location (" + c.getOfficeLocation() + ")"));
+		c.setName(Auxiliary.entryCheck("Name (" + c.getName() + ")"));
+		c.setHQ_location(Auxiliary.entryCheck("HQ location (" + c.getHQ_location() + ")"));
+		c.setOfficeLocation(Auxiliary.entryCheck("Offic location (" + c.getOfficeLocation() + ")"));
 		c.setGovernmentRegisteredID(Auxiliary.inputNumber("G.R.ID (" + c.getGovernmentRegisteredID() + ")"));
-		c.setFounderContactInfo(Auxiliary.inputString("Founders info (" + c.getFounderContactInfo() + ")"));
+		c.setFounderContactInfo(Auxiliary.entryCheck("Founders info (" + c.getFounderContactInfo() + ")"));
 		companies.set(choice, c);
-		save();
+		JsonHandler.saveCompanies(companies);
 		CompanyMenu();
 			
 	}
@@ -171,8 +131,7 @@ public class Start {
 				System.out.println("3. Change Company");
 				System.out.println("4. Work in progres");
 				System.out.println("5. Exit to main menu");
-	}
-	
+	}	
 
 	private void projectMenu() {
 		
@@ -204,21 +163,14 @@ public class Start {
 		projectMenu();
     }
 	
-	//private void loadProjects() {
-	//	
-	//	if (!new File(PATH_PROJECTS).exists()) {
-	//		return;
-	//	}
-
 	private void inputNewProject() {
 		Project p = new Project();
-		p.setName(Auxiliary.inputString("Input Project name: "));
-		p.setLocation(Auxiliary.inputString("Input Project location"));
+		p.setName(Auxiliary.entryCheck("Input Project name: "));
+		p.setLocation(Auxiliary.entryCheck("Input Project location"));
 		p.setCost(Auxiliary.inputNumber("Input Project cost"));
 		projects.add(p);
-		save();
-		projectMenu();
-		
+		JsonHandler.saveProjects(projects);
+		projectMenu();		
 	}
 	
 	private void changeProject() {
@@ -226,11 +178,11 @@ public class Start {
 		int choice = Auxiliary.inputNumber("Chose option", 1, projects.size())-1;
 		var p=projects.get(choice);
 		
-		p.setName(Auxiliary.inputString("Name (" + p.getName() + ")"));
-		p.setLocation(Auxiliary.inputString("Location (" + p.getLocation() + ")"));
+		p.setName(Auxiliary.entryCheck("Name (" + p.getName() + ")"));
+		p.setLocation(Auxiliary.entryCheck("Location (" + p.getLocation() + ")"));
 		p.setCost(Auxiliary.inputNumber("Cost (" + p.getCost() + ")"));
 		projects.set(choice, p);
-		save();
+		JsonHandler.saveProjects(projects);
 		projectMenu();		
 	}
 
@@ -250,8 +202,7 @@ public class Start {
 				System.out.println("2. Input new Project");
 				System.out.println("3. Change Project");
 				System.out.println("4. Work in progres");
-				System.out.println("5. Exit to main menu");
-		
+				System.out.println("5. Exit to main menu");	
 	}
 
 	private void employeeInfoMenu() {
@@ -273,31 +224,24 @@ public class Start {
 			
 		case 5:
 			Menu();
-		}
-		
+		}		
 	}
 	
-	private void listEmployeeInfo() {
-		
-		for (employeeInformation employeeInformation : employeeInformations ) {
-			System.out.printf("Name: %s  Lastname: %s", 
-					employeeInformation.getName() ,
-					employeeInformation.getLastname());
-			System.out.println("");
-		}
+	private void listEmployeeInfo() { 
+		allEmployees();		
 		employeeInfoMenu();
 	}
 	
 	private void inputNewEmployeeInfo() {
 		
 		employeeInformation e = new employeeInformation();
-		e.setName(Auxiliary.inputString("Input Employee name: "));
-		e.setLastname(Auxiliary.inputString("Input Employee lastname: "));
-		e.setContactInfo(Auxiliary.inputString("Input Employee contact info: "));
-		e.setIban(Auxiliary.inputString("Input Employee Iban"));
+		e.setName(Auxiliary.entryCheck("Input Employee name: "));
+		e.setLastname(Auxiliary.entryCheck("Input Employee lastname: "));
+		e.setContactInfo(Auxiliary.entryCheck("Input Employee contact info: "));
+		e.setIban(Auxiliary.entryCheck("Input Employee Iban"));
 		e.setSalary(Auxiliary.inputNumber("Input Employee salary"));
 		employeeInformations.add(e);
-		save();
+		JsonHandler.saveEmployeeInfo(employeeInformations);
 		employeeInfoMenu();
 	}
 	
@@ -306,13 +250,13 @@ public class Start {
 		int choice = Auxiliary.inputNumber("Chose option", 1, employeeInformations.size())-1;
 		var e=employeeInformations.get(choice);
 		
-		e.setName(Auxiliary.inputString("Name (" + e.getName() + ")"));
-		e.setLastname(Auxiliary.inputString("Last name (" + e.getLastname() + ")"));
-		e.setContactInfo(Auxiliary.inputString("Contact info (" + e.getContactInfo() + ")"));
-		e.setIban(Auxiliary.inputString("Iban (" + e.getIban() + ")"));
+		e.setName(Auxiliary.entryCheck("Name (" + e.getName() + ")"));
+		e.setLastname(Auxiliary.entryCheck("Last name (" + e.getLastname() + ")"));
+		e.setContactInfo(Auxiliary.entryCheck("Contact info (" + e.getContactInfo() + ")"));
+		e.setIban(Auxiliary.entryCheck("Iban (" + e.getIban() + ")"));
 		e.setSalary(Auxiliary.inputNumber("Salary (" + e.getSalary() + ")"));
 		employeeInformations.set(choice, e);
-		save();
+		JsonHandler.saveEmployeeInfo(employeeInformations);
 		employeeInfoMenu();
 	}
 	
@@ -331,11 +275,10 @@ public class Start {
 
 	private void employeeInfoOptions() {
 				System.out.println("1. List all of the Employee info");
-				System.out.println("2. Input new Employee info");
-				System.out.println("3. Chane Employee info");
-				System.out.println("4. Work in progres");
-				System.out.println("5. Exit to main menu");
-		
+				//System.out.println("2. Input new Employee info");
+				//System.out.println("3. Chane Employee info");
+				//System.out.println("4. Work in progres");
+				//System.out.println("5. Exit to main menu");	
 	}	
 	
 	public static void main(String[] args) {
