@@ -1,10 +1,13 @@
 package edunova.crud;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Pomocno {
 	
 	private static final Scanner ulaz = new Scanner(System.in);
+	private static final SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy");
 	
 	public static int ucitajCijeliBroj(String poruka) {
 		int i;
@@ -47,6 +50,18 @@ public class Pomocno {
 				continue;
 			}
 			return s;
+		}
+	}
+	
+	public static Date ucitajDatum(String poruka) {
+		while(true) {
+			try {
+				System.out.println(poruka);
+				return df.parse(ulaz.nextLine());
+			} catch (Exception e) {
+				System.out.println("Datum nije u dobrom formatu");
+				System.out.println("primjer unosa: " + df.format(new Date()));
+			}
 		}
 	}
 

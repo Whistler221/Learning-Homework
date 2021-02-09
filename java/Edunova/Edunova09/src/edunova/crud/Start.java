@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 import com.google.gson.reflect.TypeToken;
 
@@ -18,6 +19,12 @@ public class Start {
 	private List<Smjer> smjerovi;
 	private static final String PUTANJA_SMJEROVI="smjerovi.json";
 
+	/*
+	 * Izvođenje iz CMD
+	 * D:\jp23\eclipse\Edunova09\bin>java  -cp ../lib/gson-2.8.6.jar;. edunova.crud.Start
+	 * Program za izradu čarobnjaka za instalacije:
+	 * https://nsis.sourceforge.io/Download
+	 */
 	public Start() {
 		smjerovi= new ArrayList<>();
 		ucitajSmjerove();
@@ -67,6 +74,9 @@ public class Start {
 		case 3:
 			promjeniSmjer();
 			break;
+		case 4:
+			obrisiSmjer();
+			break;
 		case 5:
 			izbornik();
 			break;
@@ -74,14 +84,28 @@ public class Start {
 		
 	}
 
-	private void promjeniSmjer() {
+	private void obrisiSmjer() {
+		// bilo bi dobro pitati jeste li sigurno
+		//var odabir = odaberiSmjer();
+		//smjerovi.remove(odabir);
+		smjerovi.remove(odaberiSmjer());
+		spremi();
+		smjerIzbornik();
+	}
+	
+	private int odaberiSmjer() {
 		sviSmjerovi();
-		int odabir = Pomocno.ucitajCijeliBroj("Odaberite redni broj stavke", 1,
+		return Pomocno.ucitajCijeliBroj("Odaberite redni broj stavke", 1,
 				smjerovi.size())-1;
-		var s=smjerovi.get(odabir);
-		
+	}
+
+	private void promjeniSmjer() {
+		var odabir=odaberiSmjer();
+		var s = smjerovi.get(odabir);
+
 		s.setSifra(Pomocno.ucitajCijeliBroj("Šifra (" + s.getSifra() + ")"));
 		s.setNaziv(Pomocno.ucitajString("Naziv (" + s.getNaziv() + ")"));
+		// Ova linija i nije potrebna. Tu je da pokaže set metodu na List sučelju
 		smjerovi.set(odabir, s);
 		spremi();
 		smjerIzbornik();
@@ -93,16 +117,38 @@ public class Start {
 		Smjer s = new Smjer();
 		s.setSifra(Pomocno.ucitajCijeliBroj("Unesi šifru smjera"));
 		s.setNaziv(Pomocno.ucitajString("Unesi naziv smjera"));
+		s.setGrupe(ucitajGrupe());
 		smjerovi.add(s);
 		spremi();
 		smjerIzbornik();
+	}
+
+	private List<Grupa> ucitajGrupe() {
+		List<Grupa> grupe = new ArrayList<>();
+		
+		if(Pomocno.ucitajCijeliBroj("1 za unos grupa")!=1) {
+			return grupe;
+		}
+		Grupa g;
+		while(true) {
+			System.out.println("Unos nove grupe");
+			g=new Grupa();
+			g.setNaziv(Pomocno.ucitajString("Naziv grupe"));
+			g.setDatumPocetka(Pomocno.ucitajDatum("Unesite datum grupe"));
+			grupe.add(g);
+			if(Pomocno.ucitajCijeliBroj("0 za prekid unosa grupa")==0) {
+				break;
+			}
+		}
+		
+		return grupe;
 	}
 
 	private void stavkeSmjerIzbornika() {
 		System.out.println("1. Prikaži sve smjerove");
 		System.out.println("2. Dodaj novi smjer");
 		System.out.println("3. Promjeni postojeći smjer");
-		System.out.println("4. Obriši postojei smjer");
+		System.out.println("4. Obriši postojeći smjer");
 		System.out.println("5. Vraćanje na glavni izbornik");
 		
 	}
@@ -112,6 +158,13 @@ public class Start {
 		for(int i=0;i<smjerovi.size();i++) {
 			var s = smjerovi.get(i);
 			System.out.println((i+1) + ". " + s.getNaziv());
+			if(s.getGrupe().isEmpty()) {
+				continue;
+			}
+			System.out.println("\tGrupe:");
+			for( Grupa g: s.getGrupe()) {
+				System.out.println("\t\t" + g.getNaziv());
+			}
 		}
 		System.out.println("+++++++++++++++++++++");
 	}
@@ -131,7 +184,7 @@ public class Start {
 	}
 	
 	private void spremi() {
-		Gson gson = new Gson();
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		//System.out.println(gson.toJson(smjerovi));
 		
 		
