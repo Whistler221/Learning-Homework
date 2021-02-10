@@ -25,6 +25,7 @@ public class Start {
 	 * Program za izradu čarobnjaka za instalacije:
 	 * https://nsis.sourceforge.io/Download
 	 */
+	
 	public Start() {
 		smjerovi= new ArrayList<>();
 		ucitajSmjerove();
