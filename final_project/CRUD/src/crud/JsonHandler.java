@@ -14,9 +14,9 @@ import com.google.gson.reflect.TypeToken;
 
 public class JsonHandler {
 	
-	private static final String PATH_COMPANIES="companies.Json";
-	private static final String PATH_PROJECTS="projects.Json";
-	private static final String PATH_EMPLOYEEINFORMATIONS="employeeInformations.Json";
+	private static final String PATH_COMPANIES="companies.json";
+	private static final String PATH_PROJECTS="projects.json";
+	private static final String PATH_EMPLOYEEINFORMATIONS="employeeInformations.json";
 
 	
 	public static void saveCompanies(List<Company> companies) {		
@@ -53,7 +53,7 @@ public class JsonHandler {
 		
 	}
 	
-	public static void saveEmployeeInfo(List<employeeInformation> employeeInformations) {		
+	public static void saveEmployeeInfo(List<EmployeeInformation> employeeInformations) {		
 		Gson gson = new Gson();			
 		try {
 			FileWriter fw = new FileWriter(new File(PATH_EMPLOYEEINFORMATIONS));
@@ -98,7 +98,7 @@ public class JsonHandler {
 		}
 	}
 	
-	public static void loadEmployeeInfo(List<employeeInformation> employeeInformations) {
+	public static void loadEmployeeInfo(List<EmployeeInformation> employeeInformations) {
 		
 		if (!new File(PATH_EMPLOYEEINFORMATIONS).exists()) {
 			return;

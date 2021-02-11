@@ -3,8 +3,8 @@ package crud;
 public class Company {
 	
 	private String name;
-	private String HQ_location;
-	private String OfficeLocation;
+	private String hqLocation;
+	private String officeLocation;
 	private int governmentRegisteredID;
 	private String founderContactInfo;
 	
@@ -14,24 +14,24 @@ public class Company {
 	
 	public void setName(String name) {
 		this.name = name;
-	}
+	}	
 	
-	public String getHQ_location() {
-		return HQ_location;
+	public String getHqLocation() {
+		return hqLocation;
 	}
-	
-	public void setHQ_location(String hQ_location) {
-		HQ_location = hQ_location;
+
+	public void setHqLocation(String hqLocation) {
+		this.hqLocation = hqLocation;
 	}
-	
+
 	public String getOfficeLocation() {
-		return OfficeLocation;
+		return officeLocation;
 	}
-	
+
 	public void setOfficeLocation(String officeLocation) {
-		OfficeLocation = officeLocation;
+		this.officeLocation = officeLocation;
 	}
-	
+
 	public int getGovernmentRegisteredID() {
 		return governmentRegisteredID;
 	}

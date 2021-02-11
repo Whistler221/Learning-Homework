@@ -8,7 +8,7 @@ public class Start {
 
 	private List<Company> companies;
 	private List<Project> projects;
-	private List<employeeInformation> employeeInformations;
+	private List<EmployeeInformation> employeeInformations;
 	
 	public Start() {
 		
@@ -18,10 +18,10 @@ public class Start {
 		JsonHandler.loadProjects(projects);
 		employeeInformations = new ArrayList<>();
 		JsonHandler.loadEmployeeInfo(employeeInformations);
-		Menu();
+		menu();
 	}
 
-	private void Menu() {
+	private void menu() {
 
 		System.out.println("------------Company Crud------------");
 		auxiliaryMenu();
@@ -71,9 +71,13 @@ public class Start {
 		case 3:
 			changeCompany();
 			break;
+			
+		case 4:
+			removeCompany();
+			break;
 						
 		case 5:
-			Menu();
+			menu();
 				
 		}	
 	}
@@ -87,7 +91,7 @@ public class Start {
 		
 		Company c = new Company();
         c.setName(Auxiliary.entryCheck("Input Company name: "));
-        c.setHQ_location(Auxiliary.entryCheck("Input HQ Location: "));
+        c.setHqLocation(Auxiliary.entryCheck("Input HQ Location: "));
         c.setOfficeLocation(Auxiliary.entryCheck("Input Office location: "));
         c.setGovernmentRegisteredID(Auxiliary.inputNumber("Input G.R.ID: "));
         c.setFounderContactInfo(Auxiliary.entryCheck("Input Founders contact info: "));
@@ -98,20 +102,32 @@ public class Start {
 	
 	private void changeCompany() {
 		allCompanies();
-		int choice = Auxiliary.inputNumber("Chose option", 1, companies.size())-1;		
+		var choice = Auxiliary.inputNumber("Chose option", 1, companies.size())-1;		
 		var c=companies.get(choice);
 		
 		c.setName(Auxiliary.entryCheck("Name (" + c.getName() + ")"));
-		c.setHQ_location(Auxiliary.entryCheck("HQ location (" + c.getHQ_location() + ")"));
+		c.setHqLocation(Auxiliary.entryCheck("HQ location (" + c.getHqLocation() + ")"));
 		c.setOfficeLocation(Auxiliary.entryCheck("Offic location (" + c.getOfficeLocation() + ")"));
 		c.setGovernmentRegisteredID(Auxiliary.inputNumber("G.R.ID (" + c.getGovernmentRegisteredID() + ")"));
 		c.setFounderContactInfo(Auxiliary.entryCheck("Founders info (" + c.getFounderContactInfo() + ")"));
 		companies.set(choice, c);
 		JsonHandler.saveCompanies(companies);
-		CompanyMenu();
+		companyMenu();
 			
 	}
+	
+	private void removeCompany() {
+		companies.remove(choseCompany());
+		JsonHandler.saveCompanies(companies);
+		companyMenu();
+	}
 		
+	private int choseCompany() {
+		allCompanies();
+	return Auxiliary.inputNumber("Chose Company", 1,
+				companies.size())-1;
+	}
+
 	private void allCompanies() {
 		System.out.println("---------------------");
 		for (int i=0; i<companies.size(); i++) {
@@ -129,7 +145,7 @@ public class Start {
 				System.out.println("1. List all of the Companies");
 				System.out.println("2. Input new Company");
 				System.out.println("3. Change Company");
-				System.out.println("4. Work in progres");
+				System.out.println("4. Remove Company");
 				System.out.println("5. Exit to main menu");
 	}	
 
@@ -151,8 +167,12 @@ public class Start {
 			changeProject();
 			break;
 			
+		case 4:
+			removeProject();
+			break;
+			
 		case 5:
-			Menu();
+			menu();
 			
 		}		
 		
@@ -184,6 +204,18 @@ public class Start {
 		projects.set(choice, p);
 		JsonHandler.saveProjects(projects);
 		projectMenu();		
+	}
+	
+	private void removeProject() {
+		projects.remove(choseProject());
+		JsonHandler.saveProjects(projects);
+		companyMenu();
+	}
+		
+	private int choseProject() {
+		allProjects();
+		return Auxiliary.inputNumber("Chose Project", 1,
+				projects.size())-1;
 	}
 
 	private void allProjects() {
@@ -222,8 +254,12 @@ public class Start {
 			changeEmployeeInfo();
 			break;
 			
+		case 4:
+			removeEmployee();
+			break;
+			
 		case 5:
-			Menu();
+			menu();
 		}		
 	}
 	
@@ -234,12 +270,13 @@ public class Start {
 	
 	private void inputNewEmployeeInfo() {
 		
-		employeeInformation e = new employeeInformation();
-		e.setName(Auxiliary.entryCheck("Input Employee name: "));
-		e.setLastname(Auxiliary.entryCheck("Input Employee lastname: "));
-		e.setContactInfo(Auxiliary.entryCheck("Input Employee contact info: "));
+		EmployeeInformation e = new EmployeeInformation();
+		e.setEmployeeId(Auxiliary.inputNumber("Input Employee ID"));
+		e.setName(Auxiliary.entryCheck("Input Employee name"));
+		e.setLastname(Auxiliary.entryCheck("Input Employee lastname"));
+		e.setContactInfo(Auxiliary.entryCheck("Input Employee contact info"));
 		e.setIban(Auxiliary.entryCheck("Input Employee Iban"));
-		e.setSalary(Auxiliary.inputNumber("Input Employee salary"));
+		e.setSalary(Auxiliary.inputNumber("Input Employee salary"));	
 		employeeInformations.add(e);
 		JsonHandler.saveEmployeeInfo(employeeInformations);
 		employeeInfoMenu();
@@ -250,6 +287,7 @@ public class Start {
 		int choice = Auxiliary.inputNumber("Chose option", 1, employeeInformations.size())-1;
 		var e=employeeInformations.get(choice);
 		
+		e.setEmployeeId(Auxiliary.inputNumber("ID (" + e.getEmployeeId() + ")"));
 		e.setName(Auxiliary.entryCheck("Name (" + e.getName() + ")"));
 		e.setLastname(Auxiliary.entryCheck("Last name (" + e.getLastname() + ")"));
 		e.setContactInfo(Auxiliary.entryCheck("Contact info (" + e.getContactInfo() + ")"));
@@ -260,25 +298,38 @@ public class Start {
 		employeeInfoMenu();
 	}
 	
+	private void removeEmployee() {
+		employeeInformations.remove(choseEmployee());
+		JsonHandler.saveEmployeeInfo(employeeInformations);
+		employeeInfoMenu();
+	}
+		
+	private int choseEmployee() {
+		allEmployees();
+		return Auxiliary.inputNumber("Chose Employee", 1,
+				employeeInformations.size())-1;
+	}
+	
 	private void allEmployees() {
 		System.out.println("---------------------");
 		for (int i=0; i<employeeInformations.size(); i++) {
 			var e = employeeInformations.get(i);
-			System.out.println((i+1) + " . " + e.getName());
-			System.out.println((i+1) + " . " + e.getLastname());
-			System.out.println((i+1) + " . " + e.getContactInfo());
-			System.out.println((i+1) + " . " + e.getIban());
-			System.out.println((i+1) + " . " + e.getSalary());
+			System.out.println((i+1) + " . " + e.getEmployeeId());
+			//	System.out.println((i+1) + " . " + e.getName());
+			//	System.out.println((i+1) + " . " + e.getLastname());
+			//	System.out.println((i+1) + " . " + e.getContactInfo());
+			//	System.out.println((i+1) + " . " + e.getIban());
+			//	System.out.println((i+1) + " . " + e.getSalary());
 		}
 		System.out.println("---------------------");
 	}
 
 	private void employeeInfoOptions() {
 				System.out.println("1. List all of the Employee info");
-				//System.out.println("2. Input new Employee info");
-				//System.out.println("3. Chane Employee info");
-				//System.out.println("4. Work in progres");
-				//System.out.println("5. Exit to main menu");	
+				System.out.println("2. Input new Employee info");
+				System.out.println("3. Chane Employee info");
+				System.out.println("4. Work in progres");
+				System.out.println("5. Exit to main menu");	
 	}	
 	
 	public static void main(String[] args) {

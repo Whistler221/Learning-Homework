@@ -1,13 +1,21 @@
 package crud;
 
-public class employeeInformation {
+public class EmployeeInformation {
 	
+	private int		employeeId;
 	private String 	name;
 	private String 	lastname;
 	private String 	contactInfo;
 	private String 	iban;
 	private double	salary;
 	
+	public int getEmployeeId() {
+		return employeeId;
+	}
+
+	public void setEmployeeId(int employeeId) {
+		this.employeeId = employeeId;
+	}
 	
 	public String getName() {
 		return name;
@@ -49,5 +57,6 @@ public class employeeInformation {
 		this.salary = salary;
 	}
 	
+
 
 }
