@@ -188,6 +188,8 @@ public class Start {
 		p.setName(Auxiliary.entryCheck("Input Project name: "));
 		p.setLocation(Auxiliary.entryCheck("Input Project location"));
 		p.setCost(Auxiliary.inputNumber("Input Project cost"));
+		p.setStartDate(Auxiliary.loadDate("Input project start date"));
+		p.setEndDate(Auxiliary.loadDate("Input project end date"));
 		projects.add(p);
 		JsonHandler.saveProjects(projects);
 		projectMenu();		
@@ -201,6 +203,8 @@ public class Start {
 		p.setName(Auxiliary.entryCheck("Name (" + p.getName() + ")"));
 		p.setLocation(Auxiliary.entryCheck("Location (" + p.getLocation() + ")"));
 		p.setCost(Auxiliary.inputNumber("Cost (" + p.getCost() + ")"));
+		p.setEndDate(Auxiliary.loadDate("Date (" + p.getEndDate() + ")"));
+		
 		projects.set(choice, p);
 		JsonHandler.saveProjects(projects);
 		projectMenu();		

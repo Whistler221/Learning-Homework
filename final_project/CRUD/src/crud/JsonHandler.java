@@ -9,6 +9,7 @@ import java.nio.file.Path;
 import java.util.List;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 import com.google.gson.reflect.TypeToken;
 
@@ -20,7 +21,7 @@ public class JsonHandler {
 
 	
 	public static void saveCompanies(List<Company> companies) {		
-		Gson gson = new Gson();			
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();			
 		try {
 			FileWriter fw = new FileWriter(new File(PATH_COMPANIES));
 			fw.write(gson.toJson(companies));
@@ -37,7 +38,7 @@ public class JsonHandler {
 	}
 	
 	public static void saveProjects(List<Project> projects) {		
-		Gson gson = new Gson();			
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();			
 		try {
 			FileWriter fw = new FileWriter(new File(PATH_PROJECTS));
 			fw.write(gson.toJson(projects));
@@ -54,7 +55,7 @@ public class JsonHandler {
 	}
 	
 	public static void saveEmployeeInfo(List<EmployeeInformation> employeeInformations) {		
-		Gson gson = new Gson();			
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();		
 		try {
 			FileWriter fw = new FileWriter(new File(PATH_EMPLOYEEINFORMATIONS));
 			fw.write(gson.toJson(employeeInformations));
@@ -90,7 +91,7 @@ public class JsonHandler {
 			return;
 		}
 		try {
-			Type listType = new TypeToken<List<Company>>(){}.getType();
+			Type listType = new TypeToken<List<Project>>(){}.getType();
 			String json=Files.readString(Path.of(PATH_PROJECTS));
 			projects = new Gson().fromJson(json, listType);
 		}catch(Exception e) {
@@ -104,7 +105,7 @@ public class JsonHandler {
 			return;
 		}
 		try {
-			Type listType = new TypeToken<List<Company>>(){}.getType();
+			Type listType = new TypeToken<List<EmployeeInformation>>(){}.getType();
 			String json=Files.readString(Path.of(PATH_EMPLOYEEINFORMATIONS));
 			employeeInformations = new Gson().fromJson(json, listType);
 		}catch(Exception e) {
