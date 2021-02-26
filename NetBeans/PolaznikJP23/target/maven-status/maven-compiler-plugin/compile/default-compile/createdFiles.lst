@@ -1,0 +1,9 @@
+edunova\jp23\model\Entitet.class
+edunova\jp23\model\Grupa.class
+edunova\jp23\model\Smjer.class
+edunova\jp23\model\Predavac.class
+edunova\jp23\util\InitialFixtures.class
+edunova\jp23\Start.class
+edunova\jp23\model\Osoba.class
+edunova\jp23\model\Polaznik.class
+edunova\jp23\util\HibernateUtil.class
