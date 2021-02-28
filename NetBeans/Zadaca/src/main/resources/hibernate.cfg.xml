@@ -48,6 +48,6 @@
         <mapping class="model.Predavac" /> 
         <mapping class="model.Grupa" />
         <mapping class="model.Osoba" />
-         
+        <mapping class="model.Clan" /> 
     </session-factory>
 </hibernate-configuration>

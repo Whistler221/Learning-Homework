@@ -7,6 +7,7 @@ package model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -18,16 +19,9 @@ public class Polaznik{
     
     @Id
     private int sifra;
-    private String brojUgovora;
-    
-
-    public String getBrojUgovora() {
-        return brojUgovora;
-    }
-
-    public void setBrojUgovora(String brojUgovora) {
-        this.brojUgovora = brojUgovora;
-    }
+    private String brojugovora;
+    private Osoba osoba;
+    @ManyToOne
 
     public int getSifra() {
         return sifra;
@@ -36,6 +30,25 @@ public class Polaznik{
     public void setSifra(int sifra) {
         this.sifra = sifra;
     }
+
+    public String getBrojugovora() {
+        return brojugovora;
+    }
+
+    public void setBrojugovora(String brojugovora) {
+        this.brojugovora = brojugovora;
+    }
+
+    public Osoba getOsoba() {
+        return osoba;
+    }
+
+    public void setOsoba(Osoba osoba) {
+        this.osoba = osoba;
+    }
+    
+    
+    
     
     
 }

@@ -7,6 +7,7 @@ package model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -20,9 +21,21 @@ public class Predavac {
     @Id
     private int sifra;
     private String iban;
+    private Osoba osoba;
+    @ManyToOne
 
+    
+    
     public int getSifra() {
         return sifra;
+    }
+
+    public Osoba getOsoba() {
+        return osoba;
+    }
+
+    public void setOsoba(Osoba osoba) {
+        this.osoba = osoba;
     }
 
     public void setSifra(int sifra) {
@@ -37,6 +50,5 @@ public class Predavac {
         this.iban = iban;
     }
     
-    
-    
+       
 }
