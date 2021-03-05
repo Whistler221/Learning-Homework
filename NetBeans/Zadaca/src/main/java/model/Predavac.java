@@ -1,13 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *
@@ -15,33 +12,16 @@ import javax.persistence.ManyToOne;
  */
 
 @Entity
-public class Predavac {
+@Table(name = "predavac")
+public class Predavac extends Entitet{
     
-
-    @Id
-    private int sifra;
-    private String iban;
-    private Osoba osoba;
     @ManyToOne
+    @JoinColumn(name = "osoba", nullable = false)
+    private Osoba osoba;
 
+    @Column(columnDefinition = "varchar(50)")
+    private String iban;
     
-    
-    public int getSifra() {
-        return sifra;
-    }
-
-    public Osoba getOsoba() {
-        return osoba;
-    }
-
-    public void setOsoba(Osoba osoba) {
-        this.osoba = osoba;
-    }
-
-    public void setSifra(int sifra) {
-        this.sifra = sifra;
-    }
-
     public String getIban() {
         return iban;
     }
@@ -49,6 +29,5 @@ public class Predavac {
     public void setIban(String iban) {
         this.iban = iban;
     }
-    
-       
+         
 }

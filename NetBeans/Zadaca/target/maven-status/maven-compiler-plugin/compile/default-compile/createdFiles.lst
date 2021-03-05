@@ -1,4 +1,5 @@
 dz\edunova\jp23\Start.class
+model\Entitet.class
 model\Grupa.class
 Util\HibernateUtil.class
 model\Osoba.class

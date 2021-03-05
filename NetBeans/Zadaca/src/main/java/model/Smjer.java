@@ -1,14 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model;
 
 import java.math.BigDecimal;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
-import org.hibernate.type.descriptor.sql.TinyIntTypeDescriptor;
+import javax.persistence.Table;
+
 
 /**
  *
@@ -16,24 +12,16 @@ import org.hibernate.type.descriptor.sql.TinyIntTypeDescriptor;
  */
 
 @Entity
-public class Smjer {
+@Table(name = "smjer")
+public class Smjer extends Entitet{
     
-    @Id
-    private int sifra;
+    @Column(columnDefinition = "varchar(50)",nullable = false)
     private String naziv;
+    @Column(columnDefinition = "decimal(18,2)")
     private BigDecimal cijena;
-    
-    private int trajanje;
-    private TinyIntTypeDescriptor verificiran;
-    
-
-    public int getSifra() {
-        return sifra;
-    }
-
-    public void setSifra(int sifra) {
-        this.sifra = sifra;
-    }
+    private Integer trajanje;
+    @Column(columnDefinition = "tinyint(1)")
+    private Boolean verificiran;
 
     public String getNaziv() {
         return naziv;
@@ -51,21 +39,20 @@ public class Smjer {
         this.cijena = cijena;
     }
 
-    public int getTrajanje() {
+    public Integer getTrajanje() {
         return trajanje;
     }
 
-    public void setTrajanje(int trajanje) {
+    public void setTrajanje(Integer trajanje) {
         this.trajanje = trajanje;
     }
 
-    public TinyIntTypeDescriptor getVerificiran() {
+    public Boolean getVerificiran() {
         return verificiran;
     }
 
-    public void setVerificiran(TinyIntTypeDescriptor verificiran) {
+    public void setVerificiran(Boolean verificiran) {
         this.verificiran = verificiran;
     }
-    
-    
+ 
 }

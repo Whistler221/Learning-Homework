@@ -1,12 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
@@ -14,25 +10,17 @@ import javax.persistence.Id;
  */
 
 @Entity
-public class Osoba {
+@Table(name = "osoba")
+public class Osoba extends Entitet{
     
-
-    @Id
-    private int sifra;
+    @Column(columnDefinition = "varchar(50)", nullable = false)
     private String ime;
+    @Column(columnDefinition = "varchar(50)", nullable = false)
     private String prezime;
-    private char oib;
+    @Column(columnDefinition = "char(11)")
+    private String oib;
+    @Column(columnDefinition = "varchar(50)", nullable = false)
     private String email;
-    
-    
-
-    public int getSifra() {
-        return sifra;
-    }
-
-    public void setSifra(int sifra) {
-        this.sifra = sifra;
-    }
 
     public String getIme() {
         return ime;
@@ -50,11 +38,11 @@ public class Osoba {
         this.prezime = prezime;
     }
 
-    public char getOib() {
+    public String getOib() {
         return oib;
     }
 
-    public void setOib(char oib) {
+    public void setOib(String oib) {
         this.oib = oib;
     }
 
@@ -65,6 +53,7 @@ public class Osoba {
     public void setEmail(String email) {
         this.email = email;
     }
-    
+      
+
     
 }

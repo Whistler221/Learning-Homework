@@ -18,12 +18,11 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
  */
 public class HibernateUtil {
     
-     private static StandardServiceRegistry registry;
+    private static StandardServiceRegistry registry;
     private static Session session;
-    // factory principle
+    //factory principle
     public static Session getSession() {
         if (session == null) {
-            
             try {
                 // Create registry
                 registry = new StandardServiceRegistryBuilder().configure().build();
@@ -36,16 +35,14 @@ public class HibernateUtil {
 
                 // Create SessionFactory
                 SessionFactory sessionFactory = metadata.getSessionFactoryBuilder().build();
-                
-                session=sessionFactory.openSession();
+                session = sessionFactory.openSession();
             } catch (Exception e) {
-                
                 e.printStackTrace();
                 if (registry != null) {
                     StandardServiceRegistryBuilder.destroy(registry);
                 }
                 //rekurzija - potencijalni problem
-               // return getSession();
+                //return getSession();
             }
         }
         return session;

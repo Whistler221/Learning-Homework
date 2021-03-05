@@ -10,7 +10,7 @@
     <session-factory>
         <!-- JDBC Database connection settings -->
         <property name="connection.driver_class">org.mariadb.jdbc.Driver</property>
-        <property name="connection.url">jdbc:mariadb://localhost:3306/zadaca</property>
+        <property name="connection.url">jdbc:mariadb://localhost:3306/Zadaca</property>
         <property name="connection.username">edunova</property>
         <property name="connection.password">edunova</property>
         <!-- JDBC connection pool settings ... using built-in test pool -->
@@ -23,16 +23,6 @@
         <!-- Set the current session context -->
         <property name="current_session_context_class">thread</property>
         <!-- Drop and re-create the database schema on startup -->
-        <!--
-        validate: validate the schema, makes no changes to the database.
-        update: update the schema.
-        create: creates the schema, destroying previous data.
-        create-drop: drop the schema when the SessionFactory is closed explicitly, typically when the application is stopped.
-        none: does nothing with the schema, makes no changes to the database
-        
-        1. puta create-drop, poslije update
-        
-        -->
         <property name="hbm2ddl.auto">create-drop</property>
         <!-- dbcp connection pool configuration -->
         <property name="hibernate.dbcp.initialSize">5</property>
@@ -48,6 +38,5 @@
         <mapping class="model.Predavac" /> 
         <mapping class="model.Grupa" />
         <mapping class="model.Osoba" />
-        <mapping class="model.Clan" /> 
     </session-factory>
 </hibernate-configuration>
