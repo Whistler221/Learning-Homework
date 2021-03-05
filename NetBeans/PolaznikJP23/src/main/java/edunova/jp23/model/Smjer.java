@@ -7,6 +7,9 @@ package edunova.jp23.model;
 
 import java.math.BigDecimal;
 import javax.persistence.Entity;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -15,6 +18,9 @@ import javax.persistence.Entity;
 @Entity
 public class Smjer extends Entitet {
     
+    @NotNull    (message = "Obavezno postaviti naziv (naziv je null)")
+    @NotEmpty   (message = "Naiv moze biti prazan")
+    @Size       (min=3, max=50, message = "Naziv mora biti izmedju 3 i 50 znakova")
     private String naziv;
     private BigDecimal cijena;
     private Integer trajanje;

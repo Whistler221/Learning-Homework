@@ -2,8 +2,11 @@ D:\jp23NetBeans\PolaznikJP23\src\main\java\edunova\jp23\model\Polaznik.java
 D:\jp23NetBeans\PolaznikJP23\src\main\java\edunova\jp23\model\Grupa.java
 D:\jp23NetBeans\PolaznikJP23\src\main\java\edunova\jp23\model\Osoba.java
 D:\jp23NetBeans\PolaznikJP23\src\main\java\edunova\jp23\model\Predavac.java
+D:\jp23NetBeans\PolaznikJP23\src\main\java\edunova\jp23\util\EdunovaException.java
+D:\jp23NetBeans\PolaznikJP23\src\main\java\edunova\jp23\controller\ObradaSmjer.java
 D:\jp23NetBeans\PolaznikJP23\src\main\java\edunova\jp23\Start.java
 D:\jp23NetBeans\PolaznikJP23\src\main\java\edunova\jp23\util\HibernateUtil.java
+D:\jp23NetBeans\PolaznikJP23\src\main\java\edunova\jp23\controller\Obrada.java
 D:\jp23NetBeans\PolaznikJP23\src\main\java\edunova\jp23\model\Entitet.java
 D:\jp23NetBeans\PolaznikJP23\src\main\java\edunova\jp23\model\Smjer.java
 D:\jp23NetBeans\PolaznikJP23\src\main\java\edunova\jp23\util\InitialFixtures.java

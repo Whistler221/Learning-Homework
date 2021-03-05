@@ -6,6 +6,9 @@
 package edunova.jp23.model;
 
 import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -18,6 +21,9 @@ public abstract class Osoba extends Entitet {
     private String ime;
     private String prezime;
     private String oib;
+    @NotEmpty
+    @NotNull
+    @Email(message = "email nije ispravan")
     private String email;
 
     public String getIme() {
