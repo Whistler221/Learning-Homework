@@ -1,0 +1,10 @@
+model\Entitet.class
+model\Project.class
+model\Company.class
+model\EmployeeProject.class
+model\Employee.class
+model\CompanyProject.class
+util\Hibernate.class
+model\CompanyEmployee.class
+model\Paycheck.class
+start\Start.class
