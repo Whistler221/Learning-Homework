@@ -8,6 +8,7 @@ package model;
 import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
@@ -15,8 +16,10 @@ import javax.persistence.Table;
  * @author filip
  */
 @Entity
-@Table(name = "project")
-public class Project extends Entitet{
+public class Project{
+       
+    @Id
+    private int projectId;
     
     private String      name;
     private String      location;
@@ -62,6 +65,14 @@ public class Project extends Entitet{
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
+    }
+
+    public int getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(int projectId) {
+        this.projectId = projectId;
     }
     
     

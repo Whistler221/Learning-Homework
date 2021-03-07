@@ -7,6 +7,7 @@ package model;
 
 import java.math.BigDecimal;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
  *
@@ -14,7 +15,11 @@ import javax.persistence.Entity;
  */
 
 @Entity
-public class Paycheck extends Entitet {
+public class Paycheck{
+    
+    
+    @Id
+    private int paycheckId;
     
     private BigDecimal  salary;
     private String      currency;
@@ -42,6 +47,14 @@ public class Paycheck extends Entitet {
 
     public void setHourlywage(BigDecimal hourlywage) {
         this.hourlywage = hourlywage;
+    }
+
+    public int getPaycheckId() {
+        return paycheckId;
+    }
+
+    public void setPaycheckId(int paycheckId) {
+        this.paycheckId = paycheckId;
     }
     
     

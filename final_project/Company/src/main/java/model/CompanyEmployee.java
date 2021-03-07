@@ -6,6 +6,13 @@
 package model;
 
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
+
 
 
 /**
@@ -13,11 +20,23 @@ import java.util.Date;
  * @author filip
  */
 
-
+@Entity
 public class CompanyEmployee {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int companyemployeeId; 
     
     private Date startOfEmployment;
     private Date endOfEmployment;
+
+    public int getCompanyemployeId() {
+        return companyemployeeId;
+    }
+
+    public void setCompanyemployeId(int companyemployeId) {
+        this.companyemployeeId = companyemployeId;
+    }
 
     public Date getStartOfEmployment() {
         return startOfEmployment;
@@ -34,6 +53,5 @@ public class CompanyEmployee {
     public void setEndOfEmployment(Date endOfEmployment) {
         this.endOfEmployment = endOfEmployment;
     }
-
     
 }

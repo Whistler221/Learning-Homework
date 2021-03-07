@@ -5,39 +5,29 @@
  */
 package model;
 
+
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.Table;
 
 /**
  *
  * @author filip
  */
 @Entity
-@Table(name = "company")
 public class Company {
 
     @Id
-    private Long companyID;
-    
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long companyId;
     @ManyToMany
     private List<CompanyEmployee> companyemployees=new ArrayList<>();
-
-    public List<CompanyEmployee> getCompanyemployees() {
-        return companyemployees;
-    }
-
-    public void setCompanyemployees(List<CompanyEmployee> companyemployees) {
-        this.companyemployees = companyemployees;
-    }
-    
-    
-    
     
     private String  name;
     private String  hqLocation;
@@ -47,7 +37,24 @@ public class Company {
     private String  contactInformation;
     private Date    establishmentDate;
     private String  iban;
+    
+    public List<CompanyEmployee> getCompanyemployees() {
+        return companyemployees;
+    }
 
+    public void setCompanyemployees(List<CompanyEmployee> companyemployees) {
+        this.companyemployees = companyemployees;
+    }
+    
+    
+
+    public Long getCompanyId() {
+    return companyId;
+    }
+
+    public void setCompanyId(Long companyId) {
+        this.companyId = companyId;
+    }
     
     public String getEmail() {
         return email;
@@ -114,11 +121,11 @@ public class Company {
     }
 
     public Long getCompanyID() {
-        return companyID;
+        return companyId;
     }
 
     public void setCompanyID(Long companyID) {
-        this.companyID = companyID;
+        this.companyId = companyID;
     }
     
     

@@ -1,4 +1,3 @@
-model\Entitet.class
 model\Project.class
 model\Company.class
 model\EmployeeProject.class

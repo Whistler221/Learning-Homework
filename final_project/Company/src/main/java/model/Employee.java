@@ -8,7 +8,6 @@ package model;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 /**
  *
@@ -16,11 +15,11 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name = "employe")
-public class Employee {
-
-    @Id
-    private Long employeeID;
+public class Employee{
+    
+    @Id    
+    private int employeeId;
+    
     
     private String      name;
     private String      lastname;
@@ -86,13 +85,15 @@ public class Employee {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public Long getEmployeeID() {
-        return employeeID;
+    public int getEmployeeId() {
+        return employeeId;
     }
 
-    public void setEmployeeID(Long employeeID) {
-        this.employeeID = employeeID;
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
     }
+
+
     
     
 }
