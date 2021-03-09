@@ -36,7 +36,7 @@ public class InitialFixtures {
         
         s.save(java);
         
-         Smjer php = new Smjer();
+        Smjer php = new Smjer();
         php.setNaziv("Web dizajn");
         php.setCijena(new BigDecimal(4900.09));
         php.setTrajanje(130);
@@ -75,7 +75,7 @@ public class InitialFixtures {
         s.save(jp23);
         
         
-         Grupa pp22 = new Grupa();
+        Grupa pp22 = new Grupa();
         pp22.setNaziv("WD");
         pp22.setSmjer(php);
         pp22.setPredavac(predavac);

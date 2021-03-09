@@ -46,6 +46,7 @@
         <mapping class="edunova.jp23.model.Smjer" /> 
         <mapping class="edunova.jp23.model.Polaznik" />
         <mapping class="edunova.jp23.model.Predavac" />
-        <mapping class="edunova.jp23.model.Grupa" />   
+        <mapping class="edunova.jp23.model.Grupa" />
+        <mapping class="edunova.jp23.model.Operater" />   
     </session-factory>
 </hibernate-configuration>
