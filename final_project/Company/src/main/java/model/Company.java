@@ -7,14 +7,14 @@ package model;
 
 
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -26,28 +26,19 @@ public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long companyId;
-    @ManyToMany
-    private List<CompanyEmployee> companyemployees=new ArrayList<>();
     
+    @NotNull    (message = "Must set name (name is null)")
+    @NotEmpty   (message = "Name can be empty")
+    @Size       (min=3, max=50, message = "Name must be between 3 and 50 characters")
     private String  name;
     private String  hqLocation;
     private String  officeLocation;
-    private Integer employerIdentificationNumber;
+    private int employerIdentificationNumber;
     private String  email;
     private String  contactInformation;
     private Date    establishmentDate;
     private String  iban;
     
-    public List<CompanyEmployee> getCompanyemployees() {
-        return companyemployees;
-    }
-
-    public void setCompanyemployees(List<CompanyEmployee> companyemployees) {
-        this.companyemployees = companyemployees;
-    }
-    
-    
-
     public Long getCompanyId() {
     return companyId;
     }
@@ -88,11 +79,11 @@ public class Company {
         this.officeLocation = officeLocation;
     }
 
-    public Integer getEmployerIdentificationNumber() {
+    public int getEmployerIdentificationNumber() {
         return employerIdentificationNumber;
     }
 
-    public void setEmployerIdentificationNumber(Integer employerIdentificationNumber) {
+    public void setEmployerIdentificationNumber(int employerIdentificationNumber) {
         this.employerIdentificationNumber = employerIdentificationNumber;
     }
 

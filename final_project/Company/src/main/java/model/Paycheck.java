@@ -6,8 +6,13 @@
 package model;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 /**
  *
@@ -19,11 +24,22 @@ public class Paycheck{
     
     
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int paycheckId;
     
     private BigDecimal  salary;
     private String      currency;
     private BigDecimal  hourlywage;
+    
+
+
+    public int getPaycheckId() {
+        return paycheckId;
+    }
+
+    public void setPaycheckId(int paycheckId) {
+        this.paycheckId = paycheckId;
+    }
 
     public BigDecimal getSalary() {
         return salary;
@@ -49,13 +65,6 @@ public class Paycheck{
         this.hourlywage = hourlywage;
     }
 
-    public int getPaycheckId() {
-        return paycheckId;
-    }
-
-    public void setPaycheckId(int paycheckId) {
-        this.paycheckId = paycheckId;
-    }
     
     
 }

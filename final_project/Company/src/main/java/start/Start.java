@@ -5,8 +5,11 @@
  */
 package start;
 
-import org.hibernate.Session;
-import util.Hibernate;
+import controller.CompanyProcessing;
+import model.Company;
+import util.InitialFixtures;
+//import org.hibernate.Session;
+//import util.Hibernate;
 
 /**
  *
@@ -16,14 +19,21 @@ public class Start {
     
     public static void main(String[] args) {
         
-        Session s = Hibernate.getSession();
+        
+        InitialFixtures.start();
+        
+        //Company c = new Company();
+        //CompanyProcessing cp= new CompanyProcessing();
+        //cp.setEntitet(c);
         
         
-        System.out.println(s.getMetamodel().getEntities().size());
+        //Session s = Hibernate.getSession();
         
-        s.beginTransaction();
+        //System.out.println(s.getMetamodel().getEntities().size());
         
-        s.getTransaction().commit();
+        //s.beginTransaction();
+        
+        //s.getTransaction().commit();
     }
        
 }

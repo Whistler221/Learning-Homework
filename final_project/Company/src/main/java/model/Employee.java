@@ -5,9 +5,15 @@
  */
 package model;
 
+
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
 
 /**
  *
@@ -17,10 +23,13 @@ import javax.persistence.Id;
 @Entity
 public class Employee{
     
-    @Id    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int employeeId;
     
-    
+    @ManyToMany
+    private List<Paycheck> paychecks;
+   
     private String      name;
     private String      lastname;
     private String      email;
@@ -28,6 +37,22 @@ public class Employee{
     private String      idNumber;
     private String      iban;
     private Date        dateOfBirth;
+
+    public int getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
+    }
+
+    public List<Paycheck> getPaychecks() {
+        return paychecks;
+    }
+
+    public void setPaychecks(List<Paycheck> paychecks) {
+        this.paychecks = paychecks;
+    }
 
     public String getName() {
         return name;
@@ -85,15 +110,7 @@ public class Employee{
         this.dateOfBirth = dateOfBirth;
     }
 
-    public int getEmployeeId() {
-        return employeeId;
-    }
-
-    public void setEmployeeId(int employeeId) {
-        this.employeeId = employeeId;
-    }
-
-
     
+
     
 }

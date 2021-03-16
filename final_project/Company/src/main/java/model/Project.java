@@ -8,8 +8,9 @@ package model;
 import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 /**
  *
@@ -19,8 +20,9 @@ import javax.persistence.Table;
 public class Project{
        
     @Id
-    private int projectId;
-    
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long projectId;
+   
     private String      name;
     private String      location;
     private BigDecimal  projectCost;
@@ -67,13 +69,15 @@ public class Project{
         this.endDate = endDate;
     }
 
-    public int getProjectId() {
+    public Long getProjectId() {
         return projectId;
     }
 
-    public void setProjectId(int projectId) {
+    public void setProjectId(Long projectId) {
         this.projectId = projectId;
     }
+
+
     
     
 }

@@ -6,16 +6,55 @@
 package model;
 
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  *
  * @author filip
  */
+
+@Entity
 public class EmployeeProject {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int employeeProjectId;
+    @ManyToOne
+    private Employee employee;
+    @ManyToOne
+    private Project project;
     
     private String  description;
     private Date    projectStartDate;
     private Date    projectEndDate;
+
+    public int getEmployeeProjectId() {
+        return employeeProjectId;
+    }
+
+    public void setEmployeeProjectId(int employeeProjectId) {
+        this.employeeProjectId = employeeProjectId;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
 
     public String getDescription() {
         return description;
@@ -40,6 +79,8 @@ public class EmployeeProject {
     public void setProjectEndDate(Date projectEndDate) {
         this.projectEndDate = projectEndDate;
     }
+
+
     
     
     

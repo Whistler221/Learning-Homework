@@ -10,7 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 
 
@@ -27,15 +27,36 @@ public class CompanyEmployee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int companyemployeeId; 
     
+    @ManyToOne
+    private Company company;
+    @ManyToOne
+    private Employee employee;
+    
     private Date startOfEmployment;
     private Date endOfEmployment;
 
-    public int getCompanyemployeId() {
+    public int getCompanyemployeeId() {
         return companyemployeeId;
     }
 
-    public void setCompanyemployeId(int companyemployeId) {
-        this.companyemployeeId = companyemployeId;
+    public void setCompanyemployeeId(int companyemployeeId) {
+        this.companyemployeeId = companyemployeeId;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
     public Date getStartOfEmployment() {
@@ -53,5 +74,5 @@ public class CompanyEmployee {
     public void setEndOfEmployment(Date endOfEmployment) {
         this.endOfEmployment = endOfEmployment;
     }
-    
+
 }

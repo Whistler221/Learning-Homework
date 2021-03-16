@@ -8,17 +8,49 @@ package model;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  *
  * @author filip
  */
+
+@Entity
 public class CompanyProject {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long companyprojectId;
     
+    @ManyToOne
+    private Company company;
+    @ManyToOne
+    private Project project;
+     
     private Date projectStartDate;
     private Date projectEndDate;
     private String projectDescription;
     private BigDecimal projectCost;
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
 
     public Date getProjectStartDate() {
         return projectStartDate;
@@ -51,7 +83,14 @@ public class CompanyProject {
     public void setProjectCost(BigDecimal projectCost) {
         this.projectCost = projectCost;
     }
-    
-    
+
+    public Long getCompanyprojectId() {
+        return companyprojectId;
+    }
+
+    public void setCompanyprojectId(Long companyprojectId) {
+        this.companyprojectId = companyprojectId;
+    }
+   
     
 }
