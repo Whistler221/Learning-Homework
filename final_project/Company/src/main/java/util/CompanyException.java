@@ -9,19 +9,13 @@ package util;
  *
  * @author filip
  */
-public class CompanyException {
+public class CompanyException extends Exception {
     
     private String message;
     
     public CompanyException(String message){
         super();
-        if(message !=null && message.length()>2 &&
-                message.endsWith(", ")) {
-            this.message=message.substring(0,message.length()-2);
-        }else{
-            this.message=message;
-        }
-        
+        this.message=message;
     }
     
     public String getMessage(){

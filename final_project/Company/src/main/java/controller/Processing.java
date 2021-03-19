@@ -8,6 +8,7 @@ package controller;
 
 import java.util.List;
 import org.hibernate.Session;
+import util.CompanyException;
 import util.Hibernate;
 
 
@@ -21,7 +22,7 @@ public abstract class Processing<T> {
     protected  Session session;
     
     public abstract List<T>getData();
-    protected abstract void controlCreate();
+    protected abstract void controlCreate() throws CompanyException;
     protected abstract void controlUpdate();
     protected abstract void controlDelete();
     
@@ -38,7 +39,7 @@ public abstract class Processing<T> {
         this.entitet=entitet;
     }
     
-    public T create(){
+    public T create()throws CompanyException{
         controlCreate();
         save();
         return this.entitet;

@@ -33,7 +33,7 @@ public class Company {
     private String  name;
     private String  hqLocation;
     private String  officeLocation;
-    private int employerIdentificationNumber;
+    private String  companyCID;
     private String  email;
     private String  contactInformation;
     private Date    establishmentDate;
@@ -79,12 +79,12 @@ public class Company {
         this.officeLocation = officeLocation;
     }
 
-    public int getEmployerIdentificationNumber() {
-        return employerIdentificationNumber;
+    public String getCompanyCID() {
+        return companyCID;
     }
 
-    public void setEmployerIdentificationNumber(int employerIdentificationNumber) {
-        this.employerIdentificationNumber = employerIdentificationNumber;
+    public void setCompanyCID(String companyCID) {
+        this.companyCID = companyCID;
     }
 
     public String getContactInformation() {

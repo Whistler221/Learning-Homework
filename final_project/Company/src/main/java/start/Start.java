@@ -7,6 +7,7 @@ package start;
 
 import controller.CompanyProcessing;
 import model.Company;
+import util.CompanyException;
 import util.InitialFixtures;
 //import org.hibernate.Session;
 //import util.Hibernate;
@@ -20,12 +21,19 @@ public class Start {
     public static void main(String[] args) {
         
         
-        InitialFixtures.start();
+        //InitialFixtures.start();
         
-        //Company c = new Company();
-        //CompanyProcessing cp= new CompanyProcessing();
-        //cp.setEntitet(c);
+        Company c = new Company();
+        CompanyProcessing cp= new CompanyProcessing();
+        cp.setEntitet(c);
         
+        try {
+            cp.create();
+        } catch (CompanyException e) {
+            System.out.println(e.getMessage());
+        }
+        
+
         
         //Session s = Hibernate.getSession();
         

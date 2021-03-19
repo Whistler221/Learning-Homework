@@ -26,7 +26,7 @@ public class InitialFixtures {
         company.setName("Đuro Đaković");
         company.setHqLocation("Slavonski Brod");
         company.setOfficeLocation("Dr. Mile Budaka 1");
-        company.setEmployerIdentificationNumber(2145486221);
+        company.setCompanyCID("C20191019487");
         company.setEmail("uprava@duro-dakovic.com");
         company.setContactInformation("+ 385 35 446 256");
         
