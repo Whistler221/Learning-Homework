@@ -48,12 +48,13 @@ public class CompanyProcessing extends Processing<Company> {
     }
 
     @Override
-    protected void controlUpdate() {
+    protected void controlUpdate() throws CompanyException {
+        controlCreate();
 
     }
 
     @Override
-    protected void controlDelete() {
+    protected void controlDelete() throws CompanyException {
 
     }
 

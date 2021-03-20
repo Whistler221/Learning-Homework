@@ -10,15 +10,20 @@ package util;
  * @author filip
  */
 public class CompanyException extends Exception {
-    
+
     private String message;
-    
-    public CompanyException(String message){
+
+    public CompanyException(String message) {
         super();
-        this.message=message;
+        if (message != null && message.length() > 2 && message.endsWith(", ")) {
+            this.message = message.substring(0, message.length() - 2);
+        }else{
+            this.message = message;
+        }
+        
     }
-    
-    public String getMessage(){
+
+    public String getMessage() {
         return message;
     }
 }

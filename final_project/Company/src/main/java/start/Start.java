@@ -24,6 +24,14 @@ public class Start {
         //InitialFixtures.start();
         
         Company c = new Company();
+        c.setName("Svjetlost");
+        c.setHqLocation("New HQ Location");
+        c.setOfficeLocation("New Ofice Location");
+        c.setCompanyCID("C20190109681");
+        c.setEmail("newemail@gmail.com");
+        c.setContactInformation("Contact info");
+        //date
+        c.setIban("HR3424020061255883345");
         CompanyProcessing cp= new CompanyProcessing();
         cp.setEntitet(c);
         
