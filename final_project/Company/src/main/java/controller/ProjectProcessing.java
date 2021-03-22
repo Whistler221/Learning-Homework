@@ -17,7 +17,7 @@ public class ProjectProcessing extends Processing<Project>{
 
     @Override
     public List<Project> getData() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return session.createQuery("from Project").list();
     }
     
     @Override

@@ -26,7 +26,7 @@ public abstract class EmployeeProcessing<T extends Employee> extends Processing<
 
     @Override
     protected void controlDelete() throws CompanyException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
 
     private void controlID() throws CompanyException {
@@ -38,6 +38,31 @@ public abstract class EmployeeProcessing<T extends Employee> extends Processing<
 
     private boolean idCheck(String idNumber) {
 
-        return false;
+        if (idNumber == null || idNumber.length() != 11) {
+            return false;
+        }
+
+        try {
+            Long.parseLong(idNumber);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+
+        int a = 10;
+        for (int i = 0; i < 10; i++) {
+            a = a + Integer.parseInt(idNumber.substring(i, i + 1));
+            a = a % 10;
+            if (a == 0) {
+                a = 10;
+            }
+            a *= 2;
+            a = a % 11;
+        }
+        int control = 11 - a;
+        if (control == 10) {
+            control = 0;
+        }
+        return control == Integer.parseInt(idNumber.substring(10));
+
     }
 }
