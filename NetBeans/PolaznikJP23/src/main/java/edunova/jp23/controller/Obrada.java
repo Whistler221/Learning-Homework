@@ -13,7 +13,6 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
-import org.hibernate.Hibernate;
 import org.hibernate.Session;
 
 /**
@@ -23,53 +22,75 @@ import org.hibernate.Session;
 public abstract class Obrada<T> {
 
     protected T entitet;
-    protected  Session session;
-    protected  Validator validator;
-    
+    protected Session session;
+    protected Validator validator;
+
     public abstract List<T> getPodaci();
+
     protected abstract void kontrolaCreate() throws EdunovaException;
+
     protected abstract void kontrolaUpdate() throws EdunovaException;
+
     protected abstract void kontrolaDelete() throws EdunovaException;
-    
-    public Obrada(){
-        this.session=HibernateUtil.getSession();
+
+    public Obrada() {
+        this.session = HibernateUtil.getSession();
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-        this.validator=factory.getValidator();
+        this.validator = factory.getValidator();
     }
-    public Obrada(T entitet){
+
+    public Obrada(T entitet) {
         this();
-        this.entitet=entitet;
+        this.entitet = entitet;
     }
-    
-    public T create() throws EdunovaException{
+
+    public T create() throws EdunovaException {
         kontrola();
         kontrolaCreate();
         save();
         return this.entitet;
     }
-    
-    public T update() throws EdunovaException{
+
+    public T update() throws EdunovaException {
         kontrola();
         kontrolaUpdate();
         save();
         return this.entitet;
     }
-    
-    public boolean delete() throws EdunovaException{
+
+    public boolean delete() throws EdunovaException {
         kontrolaDelete();
         session.beginTransaction();
         session.delete(this.entitet);
         session.getTransaction().commit();
         return true;
     }
-    
-    private void save(){
+
+    private void save() {
         session.beginTransaction();
         session.save(this.entitet);
         session.getTransaction().commit();
     }
-    
-    
+
+    private void kontrola() throws EdunovaException {
+        //https://howtodoinjava.com/hibernate/hibernate-validator-java-bean-validation/
+        Set<ConstraintViolation<T>> constraintViolations
+                = validator.validate(this.entitet);
+
+        if (constraintViolations.size() > 0) {
+
+            //String s=""; // Ovo nije najbolje
+            StringBuilder sb = new StringBuilder();
+            for (ConstraintViolation<T> violation : constraintViolations) {
+                //   s+=violation.getMessage() + ", ";
+                sb.append(violation.getMessage());
+                sb.append(", ");
+            }
+            // throw new EdunovaException(s);
+            throw new EdunovaException(sb.toString());
+        }
+
+    }
 
     public T getEntitet() {
         return entitet;
@@ -78,24 +99,5 @@ public abstract class Obrada<T> {
     public void setEntitet(T entitet) {
         this.entitet = entitet;
     }
-    
-    private void kontrola() throws EdunovaException {
-        //https://howtodoinjava.com/hibernate/hibernate-validator-java-bean-validation/
-         Set<ConstraintViolation<T>> constraintViolations 
-                 = validator.validate(this.entitet);
-         
-         if(constraintViolations.size()>0) {
-             
-             //String s=""; // Ovo nije najbolji nacin
-             StringBuilder sb = new StringBuilder();
-             for(ConstraintViolation<T> violation : constraintViolations) {
-             //  s+=violation.getMessage() + ", ";
-             sb.append(violation.getMessage());
-             sb.append(", ");
-             }
-             //throw new EdunovaException(s);
-             throw new EdunovaException(sb.toString());
-         }
-    }
-    
+
 }

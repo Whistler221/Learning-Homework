@@ -3,22 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edunova.jp23;
+package edunova.jp23.view;
 
-import edunova.jp23.view.SplashScreen;
-
-
+import edunova.jp23.model.Operater;
 
 /**
  *
  * @author filip
  */
-public class Start {
+public class Aplikacija {
     
-    public static void main(String[] args) {
-        new SplashScreen().setVisible(true);
-    }
+    public static final String NASLOV_APP= "Edunova APP";
     
+    public static Operater operater;
 }
-       
-

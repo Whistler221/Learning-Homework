@@ -8,6 +8,7 @@ package edunova.jp23.controller;
 import edunova.jp23.model.Grupa;
 import edunova.jp23.util.EdunovaException;
 import java.util.List;
+import org.hibernate.CacheMode;
 
 /**
  *
@@ -17,7 +18,9 @@ public class ObradaGrupa extends Obrada<Grupa>{
 
     @Override
     public List<Grupa> getPodaci() {
-        return session.createQuery("from Grupa").list();
+        List<Grupa> lista = session.createQuery("from Grupa").list(); 
+        session.setCacheMode(CacheMode.IGNORE);
+        return lista;
     }
 
     @Override

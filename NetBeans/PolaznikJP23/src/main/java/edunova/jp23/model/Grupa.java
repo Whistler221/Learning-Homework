@@ -76,6 +76,11 @@ public class Grupa extends Entitet{
     public void setPolaznici(List<Polaznik> polaznici) {
         this.polaznici = polaznici;
     }
+
+    @Override
+    public String toString() {
+        return getNaziv() + " [" + getPolaznici().size() + "]";
+    }
     
     
     

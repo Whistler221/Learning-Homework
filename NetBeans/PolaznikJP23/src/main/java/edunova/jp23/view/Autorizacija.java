@@ -24,7 +24,7 @@ public class Autorizacija extends javax.swing.JFrame {
      */
     public Autorizacija() {
         initComponents();
-        
+        setTitle(Aplikacija.NASLOV_APP);
         txtEmail.setText("filip.klobucar1@hotmail.com");
         pswLozinka.setText("grgacvarak");
     }
@@ -45,7 +45,7 @@ public class Autorizacija extends javax.swing.JFrame {
         pswLozinka = new javax.swing.JPasswordField();
         btnPrijava = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Edunova");
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/autorizacija.png"))); // NOI18N
@@ -116,7 +116,7 @@ public class Autorizacija extends javax.swing.JFrame {
     private void txtEmailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyReleased
         if(evt.getKeyCode()==KeyEvent.VK_ENTER
                 && !txtEmail.getText().isEmpty()) {
-            pswLozinka.requestFocus();
+           pswLozinka.requestFocus();
         }
     }//GEN-LAST:event_txtEmailKeyReleased
 
@@ -143,6 +143,7 @@ public class Autorizacija extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void prijaviSe() {
+        
         // u view radim kontrole
         
         if(txtEmail.getText().isEmpty()){
@@ -174,11 +175,18 @@ public class Autorizacija extends javax.swing.JFrame {
         ObradaOperater oo = new ObradaOperater();
         Operater o = oo.autoriziraj(txtEmail.getText(), pswLozinka.getPassword());
         
-        if(o==null) {
+        if(o==null){
             obradiGresku(pswLozinka, "Email i lozinka ne odgovaraju");
             return;
         }
-        System.out.println("Autoriziran sam i mogu ici dalje");
+        
+        // imamo problem primjene objekta pod ingerencijom Hibernate
+        // jer automatski sprema u bazu -  it will be saved automatically.
+        // https://stackoverflow.com/questions/30955910/if-i-modify-a-hibernate-entity-after-doing-a-save-when-i-commit-would-the-chan
+        // o.setLozinka(null);
+        Aplikacija.operater=o;
+        new Izbornik().setVisible(true);
+        dispose();
         
     }
     
