@@ -8,7 +8,7 @@ package start;
 import controller.CompanyProcessing;
 import model.Company;
 import util.CompanyException;
-import util.InitialFixtures;
+//import util.InitialFixtures;
 //import org.hibernate.Session;
 //import util.Hibernate;
 

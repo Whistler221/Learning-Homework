@@ -34,7 +34,7 @@ public class InitialFixtures {
         
         Employee employee = new Employee();
         employee.setName("Juraj");
-        employee.setLastname("Bednaic");
+        employee.setLastName("Bednaic");
         employee.setEmail("");
         employee.setPhoneNumber("+385-995-5564-86");
         employee.setIdNumber("154678594");

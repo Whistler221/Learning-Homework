@@ -17,11 +17,19 @@ public abstract class EmployeeProcessing<T extends Employee> extends Processing<
     @Override
     protected void controlCreate() throws CompanyException {
         controlID();
+        controlNameSet();
+        controlSetLastName();
+        controlSetEmail();
+        controlLenghtEmail();
+        controlSetPhoneNumber();
+        controlSetIban();
+        controlLenghtIBan();
     }
 
     @Override
     protected void controlUpdate() throws CompanyException {
         controlID();
+        
     }
 
     @Override
@@ -64,5 +72,42 @@ public abstract class EmployeeProcessing<T extends Employee> extends Processing<
         }
         return control == Integer.parseInt(idNumber.substring(10));
 
+    }
+
+    private void controlNameSet() throws CompanyException {
+        if (entitet.getName() == null || entitet.getName().isEmpty());
+        throw new CompanyException("The name must be entered");
+    }
+
+    private void controlSetLastName() throws CompanyException {
+        if (entitet.getLastName()== null || entitet.getLastName().isEmpty());
+        throw new CompanyException("The name must be entered");
+    }
+
+    private void controlSetEmail() throws CompanyException{
+        if (entitet.getEmail() == null || entitet.getEmail().isEmpty());
+        throw new CompanyException("Email must be entered");
+    }
+
+    private void controlSetPhoneNumber() throws CompanyException {
+        if (entitet.getPhoneNumber()== null || entitet.getPhoneNumber().isEmpty());
+            throw new CompanyException("Phone number must be entered");
+    }
+
+    private void controlSetIban() throws CompanyException {
+        if (entitet.getIban()==null || entitet.getIban().isEmpty());
+        throw new CompanyException("Iban must be entered");
+    }
+
+    private void controlLenghtIBan() throws CompanyException{
+        if (entitet.getIban().length() > 34) {
+            throw new CompanyException("Iban max characters is 34");
+        }
+    }
+
+    private void controlLenghtEmail() throws CompanyException {
+        if (entitet.getEmail().length() > 254) {
+            throw new CompanyException("Email max characters is 254");
+        }
     }
 }

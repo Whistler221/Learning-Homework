@@ -59,8 +59,9 @@ public class CompanyProcessing extends Processing<Company> {
     }
 
     private void controlNameSet() throws CompanyException {
-        if (entitet.getName() == null || entitet.getName().isEmpty());
-        throw new CompanyException("The name must be set");
+        if (entitet.getName() == null || entitet.getName().isEmpty()) {
+            throw new CompanyException("The name must be set");
+        }
     }
 
     private void controlNameLenght() throws CompanyException {
@@ -115,21 +116,21 @@ public class CompanyProcessing extends Processing<Company> {
 
     private void controlSetContactInformation() throws CompanyException {
         if (entitet.getContactInformation() == null || entitet.getContactInformation().isEmpty());
-            throw new CompanyException("Descriptiom must be entered");
+        throw new CompanyException("Contact Information must be entered");
 
     }
-    
+
     private void controlLenghtContactInformation() throws CompanyException {
         if (entitet.getContactInformation().length() > 1000) {
             throw new CompanyException("Contact information max characters is set to 1000");
         }
     }
-    
+
     private void controlSetIBan() throws CompanyException {
-        if (entitet.getIban()==null || entitet.getIban().isEmpty());
+        if (entitet.getIban() == null || entitet.getIban().isEmpty());
         throw new CompanyException("Iban must be entered");
     }
-    
+
     private void controlLenghtIBan() throws CompanyException {
         if (entitet.getIban().length() > 34) {
             throw new CompanyException("Iban max characters is 34");

@@ -5,7 +5,6 @@
  */
 package model;
 
-
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
@@ -14,29 +13,27 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
-
 /**
  *
  * @author filip
  */
-
 @Entity
-public class Employee{
-    
+public class Employee {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int employeeId;
-    
+
     @ManyToMany
     private List<Paycheck> paychecks;
-   
-    private String      name;
-    private String      lastname;
-    private String      email;
-    private String      phoneNumber;
-    private String      idNumber;
-    private String      iban;
-    private Date        dateOfBirth;
+
+    private String name;
+    private String lastName;
+    private String email;
+    private String phoneNumber;
+    private String idNumber;
+    private String iban;
+    private Date dateOfBirth;
 
     public int getEmployeeId() {
         return employeeId;
@@ -62,12 +59,12 @@ public class Employee{
         this.name = name;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -110,7 +107,4 @@ public class Employee{
         this.dateOfBirth = dateOfBirth;
     }
 
-    
-
-    
 }
