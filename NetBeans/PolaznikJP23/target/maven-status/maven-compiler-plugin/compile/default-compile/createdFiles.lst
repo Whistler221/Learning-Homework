@@ -19,6 +19,7 @@ edunova\jp23\controller\ObradaGrupa.class
 edunova\jp23\model\Grupa.class
 edunova\jp23\view\Autorizacija$3.class
 edunova\jp23\view\Izbornik$Vrijeme.class
+edunova\jp23\view\GrupaForma$2.class
 edunova\jp23\view\GrupaForma.class
 edunova\jp23\util\Test.class
 edunova\jp23\view\SmjerForma$1.class
@@ -33,6 +34,7 @@ edunova\jp23\view\Izbornik$3.class
 edunova\jp23\util\KreirajOperatera.class
 edunova\jp23\view\SmjerForma.class
 edunova\jp23\view\Autorizacija.class
+edunova\jp23\util\EdunovaUtil.class
 edunova\jp23\controller\ObradaSmjer.class
 edunova\jp23\view\Izbornik.class
 edunova\jp23\view\SmjerForma$4.class

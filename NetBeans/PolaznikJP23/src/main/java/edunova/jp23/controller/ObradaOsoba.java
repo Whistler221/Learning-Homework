@@ -12,28 +12,28 @@ import edunova.jp23.util.EdunovaException;
  *
  * @author filip
  */
-public abstract class ObradaOsoba<T extends Osoba> extends Obrada<T>{
+public abstract class ObradaOsoba<T extends Osoba> extends Obrada<T> {
 
     @Override
     protected void kontrolaCreate() throws EdunovaException {
-       kontrolaOIB();
+        kontrolaOIB();
     }
 
     @Override
     protected void kontrolaUpdate() throws EdunovaException {
         kontrolaOIB();
     }
-    
-    private void kontrolaOIB() throws EdunovaException{
-        if(!oibValjan(entitet.getOib())){
+
+    private void kontrolaOIB() throws EdunovaException {
+        if (!oibValjan(entitet.getOib())) {
             throw new EdunovaException("OIB nije formalno ispravan");
         }
     }
-    
-    
-    private boolean oibValjan(String oib){
+
+    private boolean oibValjan(String oib) {
         //https://regos.hr/app/uploads/2018/07/KONTROLA-OIB-a.pdf
-        if (oib.length() != 11) {
+
+        if (oib == null || oib.length() != 11) {
             return false;
         }
 
@@ -60,11 +60,5 @@ public abstract class ObradaOsoba<T extends Osoba> extends Obrada<T>{
         return kontrolni == Integer.parseInt(oib.substring(10));
 
     }
-    
 
-   
-    
-    
-    
 }
-

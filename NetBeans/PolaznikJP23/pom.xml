@@ -38,7 +38,7 @@
         </dependency>
     
         <!-- Java bean validation API - Spec -->
-<dependency>
+    <dependency>
     <groupId>javax.validation</groupId>
     <artifactId>validation-api</artifactId>
     <version>2.0.1.Final</version>
@@ -85,8 +85,27 @@
         <artifactId>jbcrypt</artifactId>
         <version>0.4</version>
     </dependency>
+    
+        <!-- https://mvnrepository.com/artifact/com.github.lgooddatepicker/LGoodDatePicker -->
+    <dependency>
+        <groupId>com.github.lgooddatepicker</groupId>
+        <artifactId>LGoodDatePicker</artifactId>
+        <version>11.2.1</version>
+    </dependency>
 
-
+        <!-- https://mvnrepository.com/artifact/us.codecraft/xsoup -->
+    <dependency>
+        <groupId>us.codecraft</groupId>
+        <artifactId>xsoup</artifactId>
+        <version>0.3.2</version>
+    </dependency>
+    
+        <!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
+    <dependency>
+        <groupId>org.jsoup</groupId>
+        <artifactId>jsoup</artifactId>
+        <version>1.13.1</version>
+    </dependency>
 
         
     </dependencies>

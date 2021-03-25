@@ -29,7 +29,7 @@ public class ObradaSmjer extends Obrada<Smjer> {
     @Override
     public List<Smjer> getPodaci() {
         //https://docs.jboss.org/hibernate/orm/3.3/reference/en/html/queryhql.html
-        List<Smjer> lista = session.createQuery("from Smjer").list(); 
+        List<Smjer> lista = session.createQuery("from Smjer").list();
         session.setCacheMode(CacheMode.IGNORE);
         return lista;
     }
@@ -81,7 +81,7 @@ public class ObradaSmjer extends Obrada<Smjer> {
     private void kontrolaCijena() throws EdunovaException {
         if (entitet.getCijena() == null
                 || entitet.getCijena().compareTo(BigDecimal.ZERO) <= 0) {
-            throw new EdunovaException("Cijen mora biti postavljena i veća od 0");
+            throw new EdunovaException("Cijena mora biti postavljena i veća od 0");
         }
     }
 
