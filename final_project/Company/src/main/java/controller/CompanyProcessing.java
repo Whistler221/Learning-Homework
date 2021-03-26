@@ -116,7 +116,7 @@ public class CompanyProcessing extends Processing<Company> {
     }
 
     private void controlLenghtEmail() throws CompanyException {
-        if (entitet.getEmail().length() > 254) {
+        if (entitet.getEmail().length() < 254) {
             throw new CompanyException("Email max characters is 254");
         }
     }
@@ -128,8 +128,8 @@ public class CompanyProcessing extends Processing<Company> {
     }
 
     private void controlLenghtContactInformation() throws CompanyException {
-        if (entitet.getContactInformation().length() > 1000) {
-            throw new CompanyException("Contact information max characters is set to 1000");
+        if (entitet.getContactInformation().length() < 1000) {
+            throw new CompanyException("Contact information max characters is 1000");
         }
     }
 
