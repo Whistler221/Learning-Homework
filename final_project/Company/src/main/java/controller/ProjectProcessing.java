@@ -39,13 +39,15 @@ public class ProjectProcessing extends Processing<Project> {
     }
 
     private void controlSetName() throws CompanyException {
-        if (entitet.getName() == null || entitet.getName().isEmpty());
-        throw new CompanyException("The name must be entered");
+        if (entitet.getName() == null || entitet.getName().isEmpty()) {
+            throw new CompanyException("The name must be entered");
+        }
     }
 
     private void controlSetLocation() throws CompanyException {
-        if (entitet.getLocation() == null || entitet.getLocation().isEmpty());
-        throw new CompanyException("HQ location must be entered");
+        if (entitet.getLocation() == null || entitet.getLocation().isEmpty()) {
+            throw new CompanyException("HQ location must be entered");
+        }
     }
 
     private void controlSetProjectCost() throws CompanyException {

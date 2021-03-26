@@ -71,8 +71,9 @@ public class CompanyProcessing extends Processing<Company> {
     }
 
     private void controlSetHqLocation() throws CompanyException {
-        if (entitet.getHqLocation() == null || entitet.getHqLocation().isEmpty());
-        throw new CompanyException("HQ location must be entered");
+        if (entitet.getHqLocation() == null || entitet.getHqLocation().isEmpty()) {
+            throw new CompanyException("HQ location must be entered");
+        }
     }
 
     private void controlLenghtHqLocation() throws CompanyException {
@@ -82,8 +83,9 @@ public class CompanyProcessing extends Processing<Company> {
     }
 
     private void controlSetOfficeLocation() throws CompanyException {
-        if (entitet.getOfficeLocation() == null || entitet.getOfficeLocation().isEmpty());
-        throw new CompanyException("Office location must be entered");
+        if (entitet.getOfficeLocation() == null || entitet.getOfficeLocation().isEmpty()) {
+            throw new CompanyException("Office location must be entered");
+        }
     }
 
     private void controlLenghtOfficeLocation() throws CompanyException {
@@ -93,19 +95,24 @@ public class CompanyProcessing extends Processing<Company> {
     }
 
     private void controlSetCompanyCID() throws CompanyException {
-        if (entitet.getCompanyCID() == null || entitet.getCompanyCID().isEmpty());
-        throw new CompanyException("Company CID number must be entered");
+        if (entitet.getCompanyCID() == null || entitet.getCompanyCID().isEmpty()) {
+            throw new CompanyException("Company CID number must be entered");
+        }
     }
 
     private void controlLenghtCompanyCID() throws CompanyException {
-        if ((entitet.getCompanyCID().length() != 12) || (entitet.getCompanyCID().length() != 11)) {
-            throw new CompanyException("CID input is not valid, length can either be 11 or 12 characters long");
+        if(entitet.getCompanyCID().length() > 12) {
+            throw new CompanyException("Cid input must not be greater than 12");
+        }
+        if(entitet.getCompanyCID().length() < 10) {
+            throw new CompanyException("Cid input must be greater than 10");
         }
     }
 
     private void controlSetEmail() throws CompanyException {
-        if (entitet.getEmail() == null || entitet.getEmail().isEmpty());
-        throw new CompanyException("Email must be entered");
+        if (entitet.getEmail() == null || entitet.getEmail().isEmpty()) {
+            throw new CompanyException("Email must be entered");
+        }
     }
 
     private void controlLenghtEmail() throws CompanyException {
@@ -115,9 +122,9 @@ public class CompanyProcessing extends Processing<Company> {
     }
 
     private void controlSetContactInformation() throws CompanyException {
-        if (entitet.getContactInformation() == null || entitet.getContactInformation().isEmpty());
-        throw new CompanyException("Contact Information must be entered");
-
+        if (entitet.getContactInformation() == null || entitet.getContactInformation().isEmpty()) {
+            throw new CompanyException("Contact Information must be entered");
+        }
     }
 
     private void controlLenghtContactInformation() throws CompanyException {
@@ -127,8 +134,9 @@ public class CompanyProcessing extends Processing<Company> {
     }
 
     private void controlSetIBan() throws CompanyException {
-        if (entitet.getIban() == null || entitet.getIban().isEmpty());
-        throw new CompanyException("Iban must be entered");
+        if (entitet.getIban() == null || entitet.getIban().isEmpty()) {
+            throw new CompanyException("Iban must be entered");
+        }
     }
 
     private void controlLenghtIBan() throws CompanyException {

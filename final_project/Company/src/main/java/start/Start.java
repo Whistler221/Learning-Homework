@@ -27,7 +27,7 @@ public class Start {
         c.setName("Svjetlost");
         c.setHqLocation("New HQ Location");
         c.setOfficeLocation("New Ofice Location");
-        c.setCompanyCID("C20190109681");
+        c.setCompanyCID("C2019010968");
         c.setEmail("newemail@gmail.com");
         c.setContactInformation("Contact info");
         //date

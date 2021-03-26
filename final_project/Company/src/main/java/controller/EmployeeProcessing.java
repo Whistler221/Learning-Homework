@@ -75,28 +75,33 @@ public abstract class EmployeeProcessing<T extends Employee> extends Processing<
     }
 
     private void controlNameSet() throws CompanyException {
-        if (entitet.getName() == null || entitet.getName().isEmpty());
-        throw new CompanyException("The name must be entered");
+        if (entitet.getName() == null || entitet.getName().isEmpty()) {
+            throw new CompanyException("The name must be entered");
+        }
     }
 
     private void controlSetLastName() throws CompanyException {
-        if (entitet.getLastName()== null || entitet.getLastName().isEmpty());
-        throw new CompanyException("The name must be entered");
+        if (entitet.getLastName()== null || entitet.getLastName().isEmpty()) {
+            throw new CompanyException("The Lastname must be entered");
+        }
     }
 
     private void controlSetEmail() throws CompanyException{
-        if (entitet.getEmail() == null || entitet.getEmail().isEmpty());
-        throw new CompanyException("Email must be entered");
+        if (entitet.getEmail() == null || entitet.getEmail().isEmpty()) {
+            throw new CompanyException("Email must be entered");
+        }
     }
 
     private void controlSetPhoneNumber() throws CompanyException {
-        if (entitet.getPhoneNumber()== null || entitet.getPhoneNumber().isEmpty());
+        if (entitet.getPhoneNumber()== null || entitet.getPhoneNumber().isEmpty()) {
             throw new CompanyException("Phone number must be entered");
+        }
     }
 
     private void controlSetIban() throws CompanyException {
-        if (entitet.getIban()==null || entitet.getIban().isEmpty());
-        throw new CompanyException("Iban must be entered");
+        if (entitet.getIban()==null || entitet.getIban().isEmpty()) {
+            throw new CompanyException("Iban must be entered");
+        }
     }
 
     private void controlLenghtIBan() throws CompanyException{
