@@ -25,7 +25,7 @@ public class CompanyEmployee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int companyemployeeId; 
+    private Long companyemployeeId; 
     
     @ManyToOne
     private Company company;
@@ -35,11 +35,11 @@ public class CompanyEmployee {
     private Date startOfEmployment;
     private Date endOfEmployment;
 
-    public int getCompanyemployeeId() {
+    public Long getCompanyemployeeId() {
         return companyemployeeId;
     }
 
-    public void setCompanyemployeeId(int companyemployeeId) {
+    public void setCompanyemployeeId(Long companyemployeeId) {
         this.companyemployeeId = companyemployeeId;
     }
 

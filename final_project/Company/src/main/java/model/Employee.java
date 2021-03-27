@@ -22,7 +22,7 @@ public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int employeeId;
+    private Long employeeId;
 
     @ManyToMany
     private List<Paycheck> paychecks;
@@ -35,11 +35,11 @@ public class Employee {
     private String iban;
     private Date dateOfBirth;
 
-    public int getEmployeeId() {
+    public Long getEmployeeId() {
         return employeeId;
     }
 
-    public void setEmployeeId(int employeeId) {
+    public void setEmployeeId(Long employeeId) {
         this.employeeId = employeeId;
     }
 

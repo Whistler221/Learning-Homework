@@ -22,7 +22,7 @@ public class EmployeeProject {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int employeeProjectId;
+    private Long employeeProjectId;
     @ManyToOne
     private Employee employee;
     @ManyToOne
@@ -32,11 +32,11 @@ public class EmployeeProject {
     private Date    projectStartDate;
     private Date    projectEndDate;
 
-    public int getEmployeeProjectId() {
+    public Long getEmployeeProjectId() {
         return employeeProjectId;
     }
 
-    public void setEmployeeProjectId(int employeeProjectId) {
+    public void setEmployeeProjectId(Long employeeProjectId) {
         this.employeeProjectId = employeeProjectId;
     }
 

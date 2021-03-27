@@ -6,19 +6,18 @@
 package controller;
 
 import java.util.List;
-import model.CompanyEmployee;
-import model.Employee;
+import model.EmployeeProject;
 import util.CompanyException;
 
 /**
  *
  * @author filip
  */
-public class CEProcessing extends Processing<Employee>{
-    // Company Employee Processing \\
+public class EPProcessing extends Processing<EmployeeProject>{
+    // Employee Project Processing//
     @Override
-    public List<Employee> getData() {
-        return session.createQuery("from Employee").list();
+    public List<EmployeeProject> getData() {
+        return session.createQuery("from EmployeeProject").list();
     }
 
     @Override
@@ -35,8 +34,5 @@ public class CEProcessing extends Processing<Employee>{
     protected void controlDelete() throws CompanyException {
         
     }
-    
-    
-    
     
 }

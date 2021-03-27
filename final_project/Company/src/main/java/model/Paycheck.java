@@ -25,19 +25,17 @@ public class Paycheck{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int paycheckId;
+    private Long paycheckId;
     
     private BigDecimal  salary;
     private String      currency;
     private BigDecimal  hourlywage;
-    
 
-
-    public int getPaycheckId() {
+    public Long getPaycheckId() {
         return paycheckId;
     }
 
-    public void setPaycheckId(int paycheckId) {
+    public void setPaycheckId(Long paycheckId) {
         this.paycheckId = paycheckId;
     }
 

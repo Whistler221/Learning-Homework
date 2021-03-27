@@ -24,7 +24,7 @@ public class Start {
         //InitialFixtures.start();
         
         Company c = new Company();
-        c.setName("Svjetlost");
+        c.setName("");
         c.setHqLocation("New HQ Location");
         c.setOfficeLocation("New Ofice Location");
         c.setCompanyCID("C2019010968");
