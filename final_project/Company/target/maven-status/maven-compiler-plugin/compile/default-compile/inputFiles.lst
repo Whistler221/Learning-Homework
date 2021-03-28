@@ -1,10 +1,13 @@
+D:\jp23NetBeans\Company\src\main\java\controller\EPProcessing.java
 D:\jp23NetBeans\Company\src\main\java\util\Hibernate.java
 D:\jp23NetBeans\Company\src\main\java\controller\ProjectProcessing.java
 D:\jp23NetBeans\Company\src\main\java\util\InitialFixtures.java
 D:\jp23NetBeans\Company\src\main\java\model\CompanyProject.java
+D:\jp23NetBeans\Company\src\main\java\model\Operator.java
 D:\jp23NetBeans\Company\src\main\java\model\Paycheck.java
 D:\jp23NetBeans\Company\src\main\java\model\Project.java
 D:\jp23NetBeans\Company\src\main\java\model\EmployeeProject.java
+D:\jp23NetBeans\Company\src\main\java\controller\CPProcessing.java
 D:\jp23NetBeans\Company\src\main\java\controller\EmployeeProcessing.java
 D:\jp23NetBeans\Company\src\main\java\model\Employee.java
 D:\jp23NetBeans\Company\src\main\java\util\CompanyException.java
@@ -12,4 +15,9 @@ D:\jp23NetBeans\Company\src\main\java\model\CompanyEmployee.java
 D:\jp23NetBeans\Company\src\main\java\model\Company.java
 D:\jp23NetBeans\Company\src\main\java\controller\Processing.java
 D:\jp23NetBeans\Company\src\main\java\start\Start.java
+D:\jp23NetBeans\Company\src\main\java\util\CreateOperator.java
 D:\jp23NetBeans\Company\src\main\java\controller\CompanyProcessing.java
+D:\jp23NetBeans\Company\src\main\java\view\Authorization.java
+D:\jp23NetBeans\Company\src\main\java\controller\OperatorProcessing.java
+D:\jp23NetBeans\Company\src\main\java\view\Application.java
+D:\jp23NetBeans\Company\src\main\java\controller\CEProcessing.java

@@ -8,6 +8,8 @@ package start;
 import controller.CompanyProcessing;
 import model.Company;
 import util.CompanyException;
+import util.InitialFixtures;
+import view.Authorization;
 //import util.InitialFixtures;
 //import org.hibernate.Session;
 //import util.Hibernate;
@@ -20,11 +22,14 @@ public class Start {
     
     public static void main(String[] args) {
         
+        new Authorization().setVisible(true);
+
         
         //InitialFixtures.start();
         
+        /*
         Company c = new Company();
-        c.setName("");
+        c.setName("Svjetlost");
         c.setHqLocation("New HQ Location");
         c.setOfficeLocation("New Ofice Location");
         c.setCompanyCID("C2019010968");
@@ -40,7 +45,7 @@ public class Start {
         } catch (CompanyException e) {
             System.out.println(e.getMessage());
         }
-        
+        */
 
         
         //Session s = Hibernate.getSession();

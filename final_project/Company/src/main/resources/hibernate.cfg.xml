@@ -50,6 +50,7 @@
         <mapping class="model.CompanyEmployee" />
         <mapping class="model.CompanyProject" />
         <mapping class="model.EmployeeProject" />
-            
+        <mapping class="model.Operator" />    
+        
     </session-factory>
 </hibernate-configuration>

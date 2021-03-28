@@ -16,7 +16,6 @@ public abstract class EmployeeProcessing<T extends Employee> extends Processing<
 
     @Override
     protected void controlCreate() throws CompanyException {
-        controlID();
         controlNameSet();
         controlSetLastName();
         controlSetEmail();
@@ -24,11 +23,14 @@ public abstract class EmployeeProcessing<T extends Employee> extends Processing<
         controlSetPhoneNumber();
         controlSetIban();
         controlLenghtIBan();
+        controlID();
     }
 
     @Override
     protected void controlUpdate() throws CompanyException {
+        controlCreate();
         controlID();
+        
         
     }
 
