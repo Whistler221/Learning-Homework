@@ -18,7 +18,18 @@ public class ObradaPolaznik extends ObradaOsoba<Polaznik>{
 
     @Override
     public List<Polaznik> getPodaci() {
-        return session.createQuery("from Polaznik").list();
+        return session.createQuery("from Polaznik p "
+                + " order by p.prezime, p.ime").list();
+    }
+    
+    public List<Polaznik> getPodaci(String uvjet) {
+        return session.createQuery("from Polaznik p "
+                + " where concat(p.ime, ' ', p.prezime, ' ', p.oib) "
+                + " like :uvjet order by p.prezime, p.ime")
+                .setParameter("uvjet", "%" + uvjet + "%")
+                
+                .setMaxResults(20)
+                .list();
     }
     
      @Override

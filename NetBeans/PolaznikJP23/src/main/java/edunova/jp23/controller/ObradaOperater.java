@@ -25,18 +25,19 @@ public class ObradaOperater extends ObradaOsoba<Operater> {
      * lozinka odgovara. Vraca null ukoliko operater ne postoji u bazi ili
      * lozinka ne odgovara
      */
-    public Operater autoriziraj(String email, char[] lozinka) {
-
-        Operater oper = (Operater) session
+    public Operater autoriziraj(String email, char[] lozinka){
+       
+        Operater oper = (Operater)session
                 .createQuery("from Operater o where o.email=:email")
                 .setParameter("email", email)
                 .getSingleResult();
-        if (oper == null) {
+        if(oper==null){
             return null;
         }
-        return BCrypt.checkpw(new String(lozinka), oper.getLozinka()) ? oper : null;
+        return BCrypt.checkpw(new String(lozinka),oper.getLozinka()) ? oper : null;
     }
-
+    
+    
     @Override
     public List<Operater> getPodaci() {
         return session.createQuery("from Operater").list();
@@ -44,14 +45,7 @@ public class ObradaOperater extends ObradaOsoba<Operater> {
 
     @Override
     protected void kontrolaDelete() throws EdunovaException {
-
-    }
-
-   /* @Override
-    protected void kontrolaCreate() throws EdunovaException {
-        super.kontrolaCreate(); // Otici u bazu i ako postoji unos novog nemoj dozvoliti unos novog
-    }
-   */ 
     
-
+    }
+    
 }
