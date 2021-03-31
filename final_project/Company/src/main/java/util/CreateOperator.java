@@ -7,13 +7,14 @@ package util;
 
 import controller.OperatorProcessing;
 import model.Operator;
+import model.Person;
 import org.mindrot.jbcrypt.BCrypt;
 
 /**
  *
  * @author filip
  */
-public class CreateOperator {
+public class CreateOperator extends Person{
 
     public static void main(String[] args) {
         Operator o = new Operator();

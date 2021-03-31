@@ -12,7 +12,7 @@ import model.Operator;
  *
  * @author filip
  */
-public class OperatorProcessing extends EmployeeProcessing<Operator> {
+public class OperatorProcessing extends PersonProcessing<Operator>{
 
     @Override
     public List<Operator> getData() {
