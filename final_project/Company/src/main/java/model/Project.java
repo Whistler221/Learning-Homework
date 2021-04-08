@@ -17,7 +17,7 @@ import javax.persistence.Id;
  * @author filip
  */
 @Entity
-public class Project{
+public class Project extends Entitet{
        
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

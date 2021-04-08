@@ -5,6 +5,7 @@
  */
 package model;
 
+import controller.EmployeeProcessing;
 import controller.PersonProcessing;
 import java.util.Date;
 import java.util.List;
@@ -19,7 +20,7 @@ import javax.persistence.ManyToMany;
  * @author filip
  */
 @Entity
-public class Employee extends PersonProcessing<Person>{
+public class Employee extends Person{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -13,7 +13,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
@@ -21,7 +20,7 @@ import javax.validation.constraints.Size;
  * @author filip
  */
 @Entity
-public class Company {
+public class Company extends Entitet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

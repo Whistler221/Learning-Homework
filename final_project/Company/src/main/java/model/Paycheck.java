@@ -20,7 +20,7 @@ import javax.persistence.ManyToMany;
  */
 
 @Entity
-public class Paycheck{
+public class Paycheck extends Entitet {
     
     
     @Id

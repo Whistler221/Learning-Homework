@@ -18,7 +18,7 @@ public class EmployeeProcessing extends Processing<Employee> {
 
     @Override
     public List<Employee> getData() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         return session.createQuery("from Employee").list();
     }
 
     @Override

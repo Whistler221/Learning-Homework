@@ -37,7 +37,7 @@ public class InitialFixtures {
         employee.setLastName("Bednaic");
         employee.setEmail("");
         employee.setPhoneNumber("+385-995-5564-86");
-        employee.setIdNumber("154678594");
+        //employee.setIdNumber("154678594");
         employee.setIban("HR1002269399051943545");
         
         s.save(employee);

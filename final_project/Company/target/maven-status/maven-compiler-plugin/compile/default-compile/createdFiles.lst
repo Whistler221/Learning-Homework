@@ -4,8 +4,10 @@ model\EmployeeProject.class
 util\InitialFixtures.class
 model\CompanyEmployee.class
 model\Paycheck.class
+model\Person.class
 start\Start.class
 controller\Processing.class
+model\Entitet.class
 util\CompanyException.class
 model\Employee.class
 model\CompanyProject.class
@@ -23,4 +25,5 @@ controller\OperatorProcessing.class
 controller\CPProcessing.class
 view\Authorization$2.class
 util\Hibernate.class
+controller\PersonProcessing.class
 controller\ProjectProcessing.class

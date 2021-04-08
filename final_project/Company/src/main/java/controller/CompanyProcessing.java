@@ -9,10 +9,12 @@ import java.util.List;
 import model.Company;
 import util.CompanyException;
 
+
 /**
  *
  * @author filip
  */
+/*
 public class CompanyProcessing extends Processing<Company> {
 
     public CompanyProcessing() {
@@ -29,6 +31,26 @@ public class CompanyProcessing extends Processing<Company> {
 
     }
 
+        
+    public abstract class CompanyProcessing<T extends Company> extends Processing<T>{
+
+    
+
+    @Override
+    public List<T> getData() {
+        return session.createQuery("from Company").list();
+
+    }
+*/
+        
+    public abstract class CompanyProcessing extends Processing<Company> {   
+     
+    @Override
+    public List<Company> getData() {
+        return session.createQuery("from Company").list();
+
+    }
+        
     @Override
     protected void controlCreate() throws CompanyException {
         controlNameSet();

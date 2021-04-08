@@ -20,7 +20,7 @@ import javax.persistence.ManyToOne;
  */
 
 @Entity
-public class CompanyProject {
+public class CompanyProject extends Entitet{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -5,6 +5,7 @@
  */
 package model;
 
+import controller.PersonProcessing;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;

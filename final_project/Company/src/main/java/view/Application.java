@@ -5,6 +5,8 @@
  */
 package view;
 
+import model.Operator;
+
 /**
  *
  * @author filip
@@ -12,5 +14,7 @@ package view;
 public class Application {
     
     public static final String TITLE_APP="Company APP";
+    
+    public static Operator operator;
     
 }

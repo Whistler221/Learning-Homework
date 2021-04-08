@@ -6,18 +6,21 @@
 package model;
 
 import java.util.Date;
+import javax.persistence.MappedSuperclass;
 
 /**
  *
  * @author filip
  */
-public class Person {
+
+@MappedSuperclass
+public abstract class Person extends Entitet{
     
     private String name;
     private String lastName;
     private String email;
     private String phoneNumber;
-    private String idNumber;
+    //private String idNumber;
     private String iban;
     private Date dateOfBirth;
 
@@ -52,7 +55,7 @@ public class Person {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-
+/*
     public String getIdNumber() {
         return idNumber;
     }
@@ -60,7 +63,7 @@ public class Person {
     public void setIdNumber(String idNumber) {
         this.idNumber = idNumber;
     }
-
+*/
     public String getIban() {
         return iban;
     }

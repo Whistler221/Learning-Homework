@@ -17,7 +17,7 @@ public abstract class PersonProcessing<T extends Person> extends Processing<T> {
 
     @Override
     public List<T> getData() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         return session.createQuery("from Person").list();
     }
 
     @Override
@@ -29,13 +29,13 @@ public abstract class PersonProcessing<T extends Person> extends Processing<T> {
         controlSetPhoneNumber();
         controlSetIban();
         controlLenghtIBan();
-        controlID();
+        //controlID();
     }
 
     @Override
     protected void controlUpdate() throws CompanyException {
         controlCreate();
-        controlID();
+        //controlID();
 
     }
 
@@ -43,14 +43,14 @@ public abstract class PersonProcessing<T extends Person> extends Processing<T> {
     protected void controlDelete() throws CompanyException {
 
     }
-
+/*
     private void controlID() throws CompanyException {
         if (!idCheck(entitet.getIdNumber())) {
             throw new CompanyException("ID not formally correct");
         }
 
     }
-
+*/
     private void controlNameSet() throws CompanyException {
         if (entitet.getName() == null || entitet.getName().isEmpty()) {
             throw new CompanyException("The name must be entered");
@@ -93,6 +93,8 @@ public abstract class PersonProcessing<T extends Person> extends Processing<T> {
         }
     }
 
+    
+    /*
     private boolean idCheck(String idNumber) {
 
         if (idNumber == null || idNumber.length() != 11) {
@@ -122,5 +124,11 @@ public abstract class PersonProcessing<T extends Person> extends Processing<T> {
         return control == Integer.parseInt(idNumber.substring(10));
 
     }
-
+    
+    private boolean idCheck() {
+        
+        return true;
+        
+    }
+    */
 }
