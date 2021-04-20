@@ -20,9 +20,7 @@ import javax.persistence.ManyToOne;
 @Entity
 public class EmployeeProject extends Entitet {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long employeeProjectId;
+
     @ManyToOne
     private Employee employee;
     @ManyToOne
@@ -32,13 +30,6 @@ public class EmployeeProject extends Entitet {
     private Date    projectStartDate;
     private Date    projectEndDate;
 
-    public Long getEmployeeProjectId() {
-        return employeeProjectId;
-    }
-
-    public void setEmployeeProjectId(Long employeeProjectId) {
-        this.employeeProjectId = employeeProjectId;
-    }
 
     public Employee getEmployee() {
         return employee;

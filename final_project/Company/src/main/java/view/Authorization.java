@@ -5,11 +5,13 @@
  */
 package view;
 
+import controller.OperatorProcessing;
 import java.awt.event.KeyEvent;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
+import model.Operator;
 
 /**
  *
@@ -147,20 +149,31 @@ public class Authorization extends javax.swing.JFrame {
             return;
         }
         try {
-            InternetAddress email= new InternetAddress(txtEmail.getText());
+            InternetAddress email = new InternetAddress(txtEmail.getText());
             email.validate();
         } catch (AddressException e) {
             errorProcessing(txtEmail, "Email is not correct");
             return;
         }
-        
+
         if (pswPassword.getPassword().length == 0) {
             errorProcessing(pswPassword, "Password is mandatory");
             return;
         }
+
+        
+        OperatorProcessing op = new OperatorProcessing();
+        Operator o = op.authorize(txtEmail.getText(), pswPassword.getPassword());
+        
+        if(o==null){
+            errorProcessing(pswPassword, "Email and Password do not match");
+            return;
+          }
+        
+        //Application.operator=o;
     }
-    
-    private void errorProcessing (JComponent component, String message) {
+
+    private void errorProcessing(JComponent component, String message) {
         component.requestFocus();
         JOptionPane.showMessageDialog(rootPane, message);
     }

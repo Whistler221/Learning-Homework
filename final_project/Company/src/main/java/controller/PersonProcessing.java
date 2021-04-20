@@ -43,14 +43,14 @@ public abstract class PersonProcessing<T extends Person> extends Processing<T> {
     protected void controlDelete() throws CompanyException {
 
     }
-/*
+
     private void controlID() throws CompanyException {
         if (!idCheck(entitet.getIdNumber())) {
             throw new CompanyException("ID not formally correct");
         }
 
     }
-*/
+
     private void controlNameSet() throws CompanyException {
         if (entitet.getName() == null || entitet.getName().isEmpty()) {
             throw new CompanyException("The name must be entered");
@@ -94,7 +94,7 @@ public abstract class PersonProcessing<T extends Person> extends Processing<T> {
     }
 
     
-    /*
+    
     private boolean idCheck(String idNumber) {
 
         if (idNumber == null || idNumber.length() != 11) {
@@ -130,5 +130,5 @@ public abstract class PersonProcessing<T extends Person> extends Processing<T> {
         return true;
         
     }
-    */
+    
 }

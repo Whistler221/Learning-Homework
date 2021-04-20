@@ -16,13 +16,13 @@ import javax.persistence.MappedSuperclass;
 @MappedSuperclass
 public abstract class Person extends Entitet{
     
-    private String name;
-    private String lastName;
-    private String email;
-    private String phoneNumber;
-    //private String idNumber;
-    private String iban;
-    private Date dateOfBirth;
+    private String  name;
+    private String  lastName;
+    private String  email;
+    private String  phoneNumber;
+    private String  idNumber;
+    private String  iban;
+    private Date    dateOfBirth;
 
     public String getName() {
         return name;
@@ -55,7 +55,7 @@ public abstract class Person extends Entitet{
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-/*
+
     public String getIdNumber() {
         return idNumber;
     }
@@ -63,7 +63,7 @@ public abstract class Person extends Entitet{
     public void setIdNumber(String idNumber) {
         this.idNumber = idNumber;
     }
-*/
+
     public String getIban() {
         return iban;
     }

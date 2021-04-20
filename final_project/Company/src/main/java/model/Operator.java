@@ -5,17 +5,14 @@
  */
 package model;
 
-import controller.PersonProcessing;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
 public class Operator extends Person{
 
-    @Id
-    private Long operatorId;
+    
     
     @NotNull(message = "Password is not null")
     @NotEmpty(message = "Password is not empty")
@@ -29,13 +26,4 @@ public class Operator extends Person{
         this.password = password;
     }
 
-    public Long getOperatorId() {
-        return operatorId;
-    }
-
-    public void setOperatorId(Long operatorId) {
-        this.operatorId = operatorId;
-    }
-    
-    
 }

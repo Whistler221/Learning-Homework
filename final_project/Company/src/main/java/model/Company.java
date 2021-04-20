@@ -22,9 +22,7 @@ import javax.validation.constraints.Size;
 @Entity
 public class Company extends Entitet {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long companyId;
+    
     
     
     @NotEmpty   (message = "Name can't be empty")
@@ -38,13 +36,6 @@ public class Company extends Entitet {
     private Date    establishmentDate;
     private String  iban;
     
-    public Long getCompanyId() {
-    return companyId;
-    }
-
-    public void setCompanyId(Long companyId) {
-        this.companyId = companyId;
-    }
     
     public String getEmail() {
         return email;
@@ -110,13 +101,7 @@ public class Company extends Entitet {
         this.iban = iban;
     }
 
-    public Long getCompanyID() {
-        return companyId;
-    }
 
-    public void setCompanyID(Long companyID) {
-        this.companyId = companyID;
-    }
     
     
 }

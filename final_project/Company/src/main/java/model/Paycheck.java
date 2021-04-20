@@ -23,22 +23,13 @@ import javax.persistence.ManyToMany;
 public class Paycheck extends Entitet {
     
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long paycheckId;
+    
     
     private BigDecimal  salary;
     private String      currency;
     private BigDecimal  hourlywage;
 
-    public Long getPaycheckId() {
-        return paycheckId;
-    }
-
-    public void setPaycheckId(Long paycheckId) {
-        this.paycheckId = paycheckId;
-    }
-
+  
     public BigDecimal getSalary() {
         return salary;
     }

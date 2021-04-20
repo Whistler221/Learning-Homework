@@ -19,9 +19,7 @@ import javax.persistence.Id;
 @Entity
 public class Project extends Entitet{
        
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long projectId;
+    
    
     private String      name;
     private String      location;
@@ -69,13 +67,7 @@ public class Project extends Entitet{
         this.endDate = endDate;
     }
 
-    public Long getProjectId() {
-        return projectId;
-    }
-
-    public void setProjectId(Long projectId) {
-        this.projectId = projectId;
-    }
+   
 
 
     

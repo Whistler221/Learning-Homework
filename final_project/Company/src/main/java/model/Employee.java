@@ -22,22 +22,11 @@ import javax.persistence.ManyToMany;
 @Entity
 public class Employee extends Person{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long employeeId;
+    
 
     @ManyToMany
     private List<Paycheck> paychecks;
 
-    
-
-    public Long getEmployeeId() {
-        return employeeId;
-    }
-
-    public void setEmployeeId(Long employeeId) {
-        this.employeeId = employeeId;
-    }
 
     public List<Paycheck> getPaychecks() {
         return paychecks;

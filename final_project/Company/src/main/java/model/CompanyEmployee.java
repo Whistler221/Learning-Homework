@@ -21,11 +21,8 @@ import javax.persistence.ManyToOne;
  */
 
 @Entity
-public class CompanyEmployee {
+public class CompanyEmployee extends Entitet{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long companyemployeeId; 
     
     @ManyToOne
     private Company company;
@@ -35,13 +32,6 @@ public class CompanyEmployee {
     private Date startOfEmployment;
     private Date endOfEmployment;
 
-    public Long getCompanyemployeeId() {
-        return companyemployeeId;
-    }
-
-    public void setCompanyemployeeId(Long companyemployeeId) {
-        this.companyemployeeId = companyemployeeId;
-    }
 
     public Company getCompany() {
         return company;

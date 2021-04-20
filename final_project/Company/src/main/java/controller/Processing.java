@@ -97,6 +97,24 @@ public abstract class Processing<T extends Entitet> {
         }
     }
 
+    public Session getSession() {
+        return session;
+    }
+
+    public void setSession(Session session) {
+        this.session = session;
+    }
+
+    public Validator getValidator() {
+        return validator;
+    }
+
+    public void setValidator(Validator validator) {
+        this.validator = validator;
+    }
+    
+    
+    
     public void setEntitet(T entitet) {
         this.entitet = entitet;
     }

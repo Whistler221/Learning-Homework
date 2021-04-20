@@ -22,9 +22,7 @@ import javax.persistence.ManyToOne;
 @Entity
 public class CompanyProject extends Entitet{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long companyprojectId;
+
     
     @ManyToOne
     private Company company;
@@ -83,14 +81,5 @@ public class CompanyProject extends Entitet{
     public void setProjectCost(BigDecimal projectCost) {
         this.projectCost = projectCost;
     }
-
-    public Long getCompanyprojectId() {
-        return companyprojectId;
-    }
-
-    public void setCompanyprojectId(Long companyprojectId) {
-        this.companyprojectId = companyprojectId;
-    }
-   
     
 }
