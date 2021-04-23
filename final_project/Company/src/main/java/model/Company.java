@@ -5,8 +5,6 @@
  */
 package model;
 
-
-
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,21 +20,17 @@ import javax.validation.constraints.Size;
 @Entity
 public class Company extends Entitet {
 
-    
-    
-    
-    @NotEmpty   (message = "Name can't be empty")
-    @Size       (min=3, max=50, message = "Name must be between 3 and 50 characters")
-    private String  name;
-    private String  hqLocation;
-    private String  officeLocation;
-    private String  companyCID;
-    private String  email;
-    private String  contactInformation;
-    private Date    establishmentDate;
-    private String  iban;
-    
-    
+    @NotEmpty(message = "Name can't be empty")
+    @Size(min = 3, max = 50, message = "Name must be between 3 and 50 characters")
+    private String name;
+    private String hqLocation;
+    private String officeLocation;
+    private String companyCID;
+    private String email;
+    private String contactInformation;
+    private Date establishmentDate;
+    private String iban;
+
     public String getEmail() {
         return email;
     }
@@ -101,7 +95,12 @@ public class Company extends Entitet {
         this.iban = iban;
     }
 
+    @Override
+    public String toString() {
+        if (getName() == null || getName().trim().isEmpty()) {
+            return "[Name is not defined]";
+        }
+        return getName();
+    }
 
-    
-    
 }

@@ -24,8 +24,8 @@ public class Authorization extends javax.swing.JFrame {
      */
     public Authorization() {
         initComponents();
-
-        txtEmail.setText("company@gmail.com");
+        setTitle(Application.TITLE_APP);
+        txtEmail.setText("filip.klobucar1@hotmail.com");
         pswPassword.setText("Company");
     }
 
@@ -45,7 +45,7 @@ public class Authorization extends javax.swing.JFrame {
         pswPassword = new javax.swing.JPasswordField();
         btnLogin = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Company");
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/company.png"))); // NOI18N
@@ -169,6 +169,10 @@ public class Authorization extends javax.swing.JFrame {
             errorProcessing(pswPassword, "Email and Password do not match");
             return;
           }
+        o.setPassword(null);
+        Application.operator=o;
+        new Menu().setVisible(true);
+        dispose();
         
         //Application.operator=o;
     }

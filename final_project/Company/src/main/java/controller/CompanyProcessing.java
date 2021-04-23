@@ -43,8 +43,17 @@ public class CompanyProcessing extends Processing<Company> {
     }
 */
         
-    public abstract class CompanyProcessing extends Processing<Company> {   
-     
+    //public class CompanyProcessing extends Processing<Company> {   
+
+    public class CompanyProcessing extends Processing<Company> {   
+
+    /**    
+    public CompanyProcessing(Company ent) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    **/
+        
     @Override
     public List<Company> getData() {
         return session.createQuery("from Company").list();
