@@ -29,6 +29,7 @@ view\Authorization$1.class
 view\Menu$3.class
 view\Menu.class
 view\SplashScreen.class
+view\CompanyForm$2.class
 view\Authorization.class
 model\Project.class
 controller\OperatorProcessing.class

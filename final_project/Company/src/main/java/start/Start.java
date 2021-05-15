@@ -10,9 +10,9 @@ import model.Company;
 import util.CompanyException;
 import util.InitialFixtures;
 import view.Authorization;
-//import util.InitialFixtures;
-//import org.hibernate.Session;
-//import util.Hibernate;
+import util.InitialFixtures;
+import org.hibernate.Session;
+import util.Hibernate;
 
 /**
  *

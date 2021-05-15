@@ -7,9 +7,11 @@ package model;
 
 import java.util.Date;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+//import javax.persistence.GeneratedValue;
+//import javax.persistence.GenerationType;
+//import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
@@ -28,8 +30,11 @@ public class Company extends Entitet {
     private String companyCID;
     private String email;
     private String contactInformation;
-    private Date establishmentDate;
+    @Temporal(TemporalType.DATE)
+    private Date   establishmentDate;
     private String iban;
+    
+    //private Date dateoperation = new java.sql.Date(new java.util.Date().getTime());
 
     public String getEmail() {
         return email;

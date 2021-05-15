@@ -6,18 +6,26 @@
 package view;
 
 import controller.CompanyProcessing;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import model.Company;
+import util.CompanyException;
 
 /**
  *
  * @author filip
  */
 public class CompanyForm extends javax.swing.JFrame {
-    
+
     private CompanyProcessing processing;
     private Company ent;
-    
+
     /**
      * Creates new form FormCompany
      */
@@ -56,9 +64,11 @@ public class CompanyForm extends javax.swing.JFrame {
         lblEstablishmentDate = new javax.swing.JLabel();
         txtIban = new javax.swing.JTextField();
         lblIban = new javax.swing.JLabel();
+        btnAdd = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        lstCompany.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         lstCompany.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 lstCompanyValueChanged(evt);
@@ -90,6 +100,14 @@ public class CompanyForm extends javax.swing.JFrame {
         lblIban.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblIban.setText("Iban");
 
+        btnAdd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnAdd.setText("Add New");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -119,6 +137,9 @@ public class CompanyForm extends javax.swing.JFrame {
                             .addComponent(lblEstablishmentDate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblIban, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,7 +179,9 @@ public class CompanyForm extends javax.swing.JFrame {
                         .addComponent(lblIban, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtIban, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         pack();
@@ -166,18 +189,50 @@ public class CompanyForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lstCompanyValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstCompanyValueChanged
-        if(evt.getValueIsAdjusting()){
+        if (evt.getValueIsAdjusting()) {
             return;
         }
-         ent = lstCompany.getSelectedValue();
-         
-         if(ent==null){
-             return;
-         }
-         txtName.setText(ent.getName());
+        ent = lstCompany.getSelectedValue();
+
+        if (ent == null) {
+            return;
+        }
+        txtName.setText(ent.getName());
+        txtHqLocation.setText(ent.getHqLocation());
+        txtOfficeLocation.setText(ent.getOfficeLocation());
+        txtCid.setText(ent.getCompanyCID());
+        txtEmail.setText(ent.getEmail());
+        txtContactInfo.setText(ent.getContactInformation());
+        
+        txtEstablishmentDate.setText(ent.getEstablishmentDate().toString());
+        txtIban.setText(ent.getIban());
+
     }//GEN-LAST:event_lstCompanyValueChanged
 
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        
+        ent.setName(txtName.getName());
+        ent.setHqLocation(txtHqLocation.getName());
+        ent.setOfficeLocation(txtOfficeLocation.getName());
+        ent.setCompanyCID(txtCid.getName());
+        ent.setEmail(txtEmail.getName());
+        ent.setContactInformation(txtContactInfo.getName());
+        String sDate1="31/12/1998";
+        Date date1 = null;  
+        try {
+            date1 = new SimpleDateFormat("dd/MM/yyyy").parse(sDate1);
+        } catch (ParseException ex) {
+            Logger.getLogger(CompanyForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        ent.setEstablishmentDate(ent.getEstablishmentDate());
+        ent.setIban(txtIban.getName());
+        //entitet.setNaziv(txtNaziv.getText());
+        
+    }//GEN-LAST:event_btnAddActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAdd;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCid;
     private javax.swing.JLabel lblContactInfo;
@@ -199,11 +254,15 @@ public class CompanyForm extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void load() {
-        
+
         DefaultListModel<Company> m = new DefaultListModel<>();
-        
+
         m.addAll(processing.getData());
-        
+
         lstCompany.setModel(m);
     }
+
+    
+
+    
 }
